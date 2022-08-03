@@ -5,11 +5,9 @@ body{
     font-family: Pretendard !important;
 
 }
- /* 480보다 클경우 - 모바일 */
-/* @media (max-width: 480px){
-   
+
+@media (min-width:768px){
     body{
-        width: fit-content;
+        width: 412px;
     }
-    
-} */
+}
