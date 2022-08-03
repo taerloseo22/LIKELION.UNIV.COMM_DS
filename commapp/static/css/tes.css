@@ -1,0 +1,25 @@
+@media (min-width: 480px){
+/* 480보다 클경우 - 모바일 */
+.test{
+    font-size: 20px;
+}
+
+}
+@media (min-width: 768px){ 
+    /* 480보다 클경우 - 태블릿 */
+
+    .test{
+        font-size: 10px;
+    }
+
+}
+@media (min-width:550px) {
+    /* 550px보다 클경우 */
+    
+    .test{
+        font-size: 100px;
+    }
+
+}
+/*밑에 있는 아이들이 우선순위가 높으므로 !important*/
+

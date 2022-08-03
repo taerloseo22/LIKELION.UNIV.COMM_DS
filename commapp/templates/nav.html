@@ -1,0 +1,23 @@
+<html>
+  <head>
+    {% load static %} <link rel="stylesheet" href={% static './css/nav.css' %}>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+  </head>
+
+  <body>
+    <div class="nav-container">
+      <div class="gomain">
+        <a href="{% url 'main' %}" class="logo">
+          <img src={% static './img/navlogo.png' %} class="logo1">
+          <div class="text">LIKELION.UNIV</div>
+        </a>
+      </div>
+      <a class="menu-trigger" href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+    <script src="/static/js/menu.js"></script>
+  </body>
+</html>
