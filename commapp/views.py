@@ -42,5 +42,9 @@ def board_update(request, pk):
         form = commForm(instance=c)
         return render(request, 'board_post.html', {'form':form})
 
+def board_delete(request,pk):
+    c = get_object_or_404(comm,pk=pk)
+    c.delete()
+    return redirect('board')
 
 

@@ -17,5 +17,6 @@
     {% endif %}
     {{ comm.text }}
     <a href="{% url 'board_update' pk=comm.pk %}">수정하기</a>
+    <a href="{% url 'board_delete' pk=comm.pk %}">삭제하기</a>
 </body>
 </html>
