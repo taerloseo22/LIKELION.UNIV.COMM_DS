@@ -26,8 +26,21 @@ def board(request):
     return render(request, 'board.html',{'comm':c})
 
 def board_detail(request, pk):
-    all = comm.objects.all()
-    c = get_object_or_404(all, pk=pk)
+    # all = comm.objects.all()
+    c = get_object_or_404(comm, pk=pk)
     return render(request, 'board_detail.html',{'comm':c})
+
+def board_update(request, pk):
+    c = get_object_or_404(comm,pk=pk)
+    if(request.method == "POST" or request.method == 'FILES'):
+        form = commForm(request.POST, request.FILES, instance=c)
+        if(form.is_valid()):
+            c = form.save(commit=False)
+            c.save()
+        return redirect('board_detail', pk=c.pk)
+    else:
+        form = commForm(instance=c)
+        return render(request, 'board_post.html', {'form':form})
+
 
 
