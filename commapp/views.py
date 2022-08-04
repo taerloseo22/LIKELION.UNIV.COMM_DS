@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import is_valid_path
 from .models import comm
 
-from commapp.forms import commForm
+from commapp.forms import CommentForm, commForm
 # Create your views here.
 
 
@@ -28,7 +28,8 @@ def board(request):
 def board_detail(request, pk):
     # all = comm.objects.all()
     c = get_object_or_404(comm, pk=pk)
-    return render(request, 'board_detail.html',{'comm':c})
+    form = CommentForm()
+    return render(request, 'board_detail.html',{'comm':c, 'comment_form':form,})
 
 def board_update(request, pk):
     c = get_object_or_404(comm,pk=pk)
@@ -47,4 +48,12 @@ def board_delete(request,pk):
     c.delete()
     return redirect('board')
 
+def board_comment(request, pk):
+    filled_form = CommentForm(request.POST)
+    if filled_form.is_valid():
+        finished_form = filled_form.save(commit=False)
+        finished_form.post = get_object_or_404(comm, pk=pk)
+        finished_form.author = request.user
+        finished_form.save()
+    return redirect('board_detail', pk)
 
