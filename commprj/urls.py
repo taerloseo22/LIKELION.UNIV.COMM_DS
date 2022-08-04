@@ -22,10 +22,15 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', views.main, name="main"),
+<<<<<<< HEAD
     # path('', include('commapp.urls')),
     path('', views.main, name="main"),
     path('board/', views.board, name="board"),
     path('board/new/', views.board_post, name="board_post"),
     path('board/<int:pk>/', views.board_detail, name="board_detail"),
     path('test/', views.test, name="test"),
+=======
+    path('', include('commapp.urls')),
+    path('accounts/',include('allauth.urls'))
+>>>>>>> 7532567006e5ef1c3cd3ab1cd47c2fd973c174c9
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

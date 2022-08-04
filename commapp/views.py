@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import is_valid_path
 from .models import comm
 
-from commapp.forms import commForm
+from commapp.forms import CommentForm, commForm
 # Create your views here.
 
 
@@ -29,8 +29,34 @@ def board(request):
     return render(request, 'board.html',{'comm':c})
 
 def board_detail(request, pk):
-    all = comm.objects.all()
-    c = get_object_or_404(all, pk=pk)
-    return render(request, 'board_detail.html',{'comm':c})
+    # all = comm.objects.all()
+    c = get_object_or_404(comm, pk=pk)
+    form = CommentForm()
+    return render(request, 'board_detail.html',{'comm':c, 'comment_form':form,})
 
+def board_update(request, pk):
+    c = get_object_or_404(comm,pk=pk)
+    if(request.method == "POST" or request.method == 'FILES'):
+        form = commForm(request.POST, request.FILES, instance=c)
+        if(form.is_valid()):
+            c = form.save(commit=False)
+            c.save()
+        return redirect('board_detail', pk=c.pk)
+    else:
+        form = commForm(instance=c)
+        return render(request, 'board_post.html', {'form':form})
+
+def board_delete(request,pk):
+    c = get_object_or_404(comm,pk=pk)
+    c.delete()
+    return redirect('board')
+
+def board_comment(request, pk):
+    filled_form = CommentForm(request.POST)
+    if filled_form.is_valid():
+        finished_form = filled_form.save(commit=False)
+        finished_form.post = get_object_or_404(comm, pk=pk)
+        finished_form.author = request.user
+        finished_form.save()
+    return redirect('board_detail', pk)
 

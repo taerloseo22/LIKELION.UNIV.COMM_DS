@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
     <h1>{{ comm.title }}</h1>
+    {{ comm.author }}
     {% if comm.img %}
         <img src="{{comm.img.url }}" width="500px">
     {% endif %} 
@@ -15,5 +15,27 @@
         <a href="{{comm.file.url }}" download>누르면 다운</a>
     {% endif %}
     {{ comm.text }}
+    <a href="{% url 'board_update' pk=comm.pk %}">수정하기</a>
+    <a href="{% url 'board_delete' pk=comm.pk %}">삭제하기</a>
+    <hr>
+    <h4>댓글</h4>
+    <hr>
+    {% if comm.comment_set.exists %}
+        {% for comment in comm.comment_set.iterator %}
+        <div id="{{comment.pk}}">
+            {{ comment.author.username }}
+            {{ comment.created_at }}
+            {{ comment.content }}
+        {% endfor %}
+    {% endif %}
+        </div>
+    <hr>
+    <form method="POST" action="{% url 'board_comment' pk=comm.pk %}">
+        {% csrf_token %}
+        <div>
+            {{ comment_form }}
+            <button type="submit">제출</button>
+        </div>
+    </form>
 </body>
 </html>
