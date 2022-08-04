@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ comm.title }}</h1>
+    {% if comm.img %}
+        <img src="{{comm.img.url }}" width="500px">
+    {% endif %} 
+    {% if comm.file %}
+        <a href="{{comm.file.url }}" download>누르면 다운</a>
+    {% endif %}
+    {{ comm.text }}
+</body>
+</html>
