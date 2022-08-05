@@ -1,7 +1,7 @@
 import imp
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import is_valid_path
-from .models import comm
+from .models import comm, Comment
 
 from commapp.forms import CommentForm, commForm
 # Create your views here.
@@ -48,7 +48,7 @@ def board_delete(request,pk):
     c.delete()
     return redirect('board')
 
-def board_comment(request, pk):
+def comment_create(request, pk):
     filled_form = CommentForm(request.POST)
     if filled_form.is_valid():
         finished_form = filled_form.save(commit=False)
@@ -57,3 +57,20 @@ def board_comment(request, pk):
         finished_form.save()
     return redirect('board_detail', pk)
 
+def comment_update(request, pk):
+    c = get_object_or_404(Comment,pk=pk) # 모델로부터 객체를 받을 때 객체가 있으면 받고, 없을 시 404 에러 페이지를 보여줌
+    p = get_object_or_404(comm,pk=c.post.pk)
+    if(request.method == "POST"):
+        form = CommentForm(request.POST, instance=c)
+        if(form.is_valid()):
+            c = form.save(commit=False)
+            c.save()
+        return redirect('board_detail', pk=p.pk) #댓글 모델의 포스트pk값을 받아서 디테일페이지/pk로 사요
+    else:
+        form = CommentForm(instance=c) #CommentForm에 정보 넣음
+        return render(request, 'board_post.html', {'form':form}) #render함수를 통해 board_post에 form을 넣는다.
+def comment_delete(request, pk):
+    c = get_object_or_404(Comment,pk=pk)
+    p = get_object_or_404(comm, pk=c.post.pk)
+    c.delete()
+    return redirect('board_detail', pk=p.pk)

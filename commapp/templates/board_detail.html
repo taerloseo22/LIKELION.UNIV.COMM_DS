@@ -24,13 +24,21 @@
         {% for comment in comm.comment_set.iterator %}
         <div id="{{comment.pk}}">
             {{ comment.author.username }}
-            {{ comment.created_at }}
             {{ comment.content }}
+            {% if comment.created_at != comment.modified_at %}
+                (수정됨){{ comment.modified_at }}
+            {% else %}
+                {{ comment.created_at }} 
+            {% endif %}
+            <a href="{% url 'comment_update' pk=comment.pk %}">수정</a>
+            <a href="{% url 'comment_delete' pk=comment.pk %}">삭제</a>
+            <!-- comment_update 함수에 댓글 pk전달 -->
+            <hr>
         {% endfor %}
     {% endif %}
         </div>
     <hr>
-    <form method="POST" action="{% url 'board_comment' pk=comm.pk %}">
+    <form method="POST" action="{% url 'comment_create' pk=comm.pk %}">
         {% csrf_token %}
         <div>
             {{ comment_form }}
