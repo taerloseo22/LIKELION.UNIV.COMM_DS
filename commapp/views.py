@@ -1,9 +1,9 @@
 import imp
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import is_valid_path
-from .models import comm, Comment
+from .models import comm, Comment,  ReComment
 
-from commapp.forms import CommentForm, commForm
+from commapp.forms import CommentForm, commForm, ReCommentForm
 # Create your views here.
 
 
@@ -29,7 +29,8 @@ def board_detail(request, pk):
     # all = comm.objects.all()
     c = get_object_or_404(comm, pk=pk)
     form = CommentForm()
-    return render(request, 'board_detail.html',{'comm':c, 'comment_form':form,})
+    reform = ReCommentForm()
+    return render(request, 'board_detail.html',{'comm':c, 'comment_form':form,'recomment_form':reform})
 
 def board_update(request, pk):
     c = get_object_or_404(comm,pk=pk)
@@ -73,4 +74,20 @@ def comment_delete(request, pk):
     c = get_object_or_404(Comment,pk=pk)
     p = get_object_or_404(comm, pk=c.post.pk)
     c.delete()
+    return redirect('board_detail', pk=p.pk)
+
+def recomment_create(request, pk, c_pk):
+    filled_form = ReCommentForm(request.POST)
+    if filled_form.is_valid():
+        finished_form = filled_form.save(commit=False)
+        finished_form.post = get_object_or_404(Comment, pk=c_pk)
+        finished_form.author = request.user
+        finished_form.save()
+    return redirect('board_detail', pk)
+
+def recomment_delete(request, pk, rc_pk):
+    c = get_object_or_404(Comment, pk=pk)
+    rc = get_object_or_404(ReComment, pk=rc_pk)
+    p = get_object_or_404(comm, pk=c.post.pk)
+    rc.delete()
     return redirect('board_detail', pk=p.pk)

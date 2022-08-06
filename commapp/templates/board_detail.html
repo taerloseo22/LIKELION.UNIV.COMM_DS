@@ -32,11 +32,21 @@
             {% endif %}
             <a href="{% url 'comment_update' pk=comment.pk %}">수정</a>
             <a href="{% url 'comment_delete' pk=comment.pk %}">삭제</a>
+            <br>
             <!-- comment_update 함수에 댓글 pk전달 -->
-            <hr>
+        {% for recom in comment.recomment_set.all %}
+            &nbsp;&nbsp;🐾{{ user.username }}:{{recom.content}} {{ created_at }}
+            <a href="{% url 'recomment_delete' pk=comment.pk rc_pk=recom.pk %}">삭제</a><br>
+        {% endfor %}
+        <form method="post" action="{% url 'recomment_create' pk=comment.post.pk c_pk=comment.pk %}">{%csrf_token%}
+            {{ recomment_form }}
+        <input type="hidden" name="comment" value={{recomment.id}}>
+        <input type="submit">
+        </form>
         {% endfor %}
     {% endif %}
-        </div>
+
+    </div>
     <hr>
     <form method="POST" action="{% url 'comment_create' pk=comm.pk %}">
         {% csrf_token %}
