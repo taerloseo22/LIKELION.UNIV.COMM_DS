@@ -76,18 +76,18 @@ def comment_delete(request, pk):
     c.delete()
     return redirect('board_detail', pk=p.pk)
 
-def recomment_create(request, pk, c_pk):
+def recomment_create(request,c_pk):
     filled_form = ReCommentForm(request.POST)
     if filled_form.is_valid():
         finished_form = filled_form.save(commit=False)
         finished_form.post = get_object_or_404(Comment, pk=c_pk)
         finished_form.author = request.user
         finished_form.save()
-    return redirect('board_detail', pk)
+    return redirect('board_detail', pk=finished_form.post.post.pk)
 
-def recomment_delete(request, pk, rc_pk):
-    c = get_object_or_404(Comment, pk=pk)
+def recomment_delete(request, rc_pk):
+    # c = get_object_or_404(Comment, pk=pk)
     rc = get_object_or_404(ReComment, pk=rc_pk)
-    p = get_object_or_404(comm, pk=c.post.pk)
+    p = get_object_or_404(comm, pk=rc.post.post.pk)
     rc.delete()
     return redirect('board_detail', pk=p.pk)
