@@ -5,7 +5,7 @@ from .models import comm, Comment, ReComment
 class commForm(forms.ModelForm):
     class Meta:
         model = comm
-        fields = ('title', 'text', 'img', 'file')
+        fields = ('title','tag','text', 'img', 'file')
 
 class CommentForm(forms.ModelForm):
     class Meta:
