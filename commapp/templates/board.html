@@ -7,24 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function option(){
-            const look = document.getElementById("posting")           
-            const look1 = document.getElementById("posting1")
-            // if(event.target.id==look){
-                look.style.display='block';
-                look1.style.display='none';
-        // }
+        function option(e){
+            const talk = document.getElementById("talk")           
+            const issue = document.getElementById("issue")
+            const project = document.getElementById("project")
+            const connent = document.getElementById("connent")
+            
+            if(e.target.id=='T'){
+                talk.style.display='block';
+                issue.style.display='none';
+                project.style.display='none';
+                connent.style.display='none';
+            }
+            else if(e.target.id=='I')
+            {
+                talk.style.display='none';
+                issue.style.display='block';
+                project.style.display='none';
+                connent.style.display='none';
+            }
+            else if(e.target.id=='P')
+            {
+                talk.style.display='none';
+                issue.style.display='block';
+                project.style.display='none';
+                connent.style.display='none';
+            }else if(e.target.id=='C')
+            {
+                talk.style.display='none';
+                issue.style.display='none';
+                project.style.display='none';
+                connent.style.display='block';
+            }
         }
     </script>
 </head>
 <body>
-    <p id="T" onclick='option()'>TALK</p>
-    <p id="I" onclick='option()'>ISSUE</p>
-    <p id="P">PROJECT</p>
-    <p id="C">CONNET</p>
+    <p id="T" onclick='option(event)'>TALK</p>
+    <p id="I" onclick='option(event)'>ISSUE</p>
+    <p id="P" onclick='option(event)'>PROJECT</p>
+    <p id="C" onclick='option(event)'>CONNET</p>
     <h4><a href="{% url 'board_post' %}">새글쓰기</a></h4>
     
-<div id="posting" style="display: none;">    
+<div id="talk" style="display: none;">    
     {% for c in comm %}
         {% if c.tag == "talk" %}
         <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
@@ -32,9 +57,25 @@
     {% endfor %}
 </div>
 
-<div id="posting1" style="display: none;">    
+<div id="issue" style="display: none;">    
     {% for c in comm %}
         {% if c.tag == "issue" %}
+        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div id="project" style="display: none;">    
+    {% for c in comm %}
+        {% if c.tag == "project" %}
+        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div id="connent" style="display: none;">    
+    {% for c in comm %}
+        {% if c.tag == "connent" %}
         <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
         {% endif %}
     {% endfor %}
