@@ -22,19 +22,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', views.main, name="main"),
-    # path('', include('commapp.urls')),
-    path('', views.main, name="main"),
-    path('board/', views.board, name="board"),
-    path('board/new/', views.board_post, name="board_post"),
-    path('board/<int:pk>/', views.board_detail, name="board_detail"),
-   path('test/', views.test, name="test"), 
-    path('', include('commapp.urls')),
-    path('accounts/',include('allauth.urls'))
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    # path('', views.main, name="main"),
     path('', include('commapp.urls')),
     path('test/', views.test, name="test"),
     path('accounts/',include('allauth.urls'))
