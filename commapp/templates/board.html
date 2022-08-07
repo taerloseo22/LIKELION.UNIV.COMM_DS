@@ -6,11 +6,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        function option(e){
+            const talk = document.getElementById("talk")           
+            const issue = document.getElementById("issue")
+            const project = document.getElementById("project")
+            const connent = document.getElementById("connent")
+            
+            if(e.target.id=='T'){
+                talk.style.display='block';
+                issue.style.display='none';
+                project.style.display='none';
+                connent.style.display='none';
+            }
+            else if(e.target.id=='I')
+            {
+                talk.style.display='none';
+                issue.style.display='block';
+                project.style.display='none';
+                connent.style.display='none';
+            }
+            else if(e.target.id=='P')
+            {
+                talk.style.display='none';
+                issue.style.display='block';
+                project.style.display='none';
+                connent.style.display='none';
+            }else if(e.target.id=='C')
+            {
+                talk.style.display='none';
+                issue.style.display='none';
+                project.style.display='none';
+                connent.style.display='block';
+            }
+        }
+    </script>
 </head>
-<body>
+    <form action="{% url 'search' %}" method="post">
+        {% csrf_token %}
+        <input id="search" name="search" value="{{q}}">
+        <input type="submit" value="검색">
+    </form>
+    <p id="T" onclick='option(event)'>TALK</p>
+    <p id="I" onclick='option(event)'>ISSUE</p>
+    <p id="P" onclick='option(event)'>PROJECT</p>
+    <p id="C" onclick='option(event)'>CONNET</p>
     <h4><a href="{% url 'board_post' %}">새글쓰기</a></h4>
-    {% for c in comm  %}
-    <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+    
+<div id="talk" style="display: none;">    
+    {% for c in comm %}
+        {% if c.tag == "talk" %}
+        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+        {% endif %}
     {% endfor %}
+</div>
+
+<div id="issue" style="display: none;">    
+    {% for c in comm %}
+        {% if c.tag == "issue" %}
+        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div id="project" style="display: none;">    
+    {% for c in comm %}
+        {% if c.tag == "project" %}
+        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div id="connent" style="display: none;">    
+    {% for c in comm %}
+        {% if c.tag == "connent" %}
+        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+   
+
+
 </body>
 </html>

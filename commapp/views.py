@@ -1,4 +1,5 @@
 import imp
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import is_valid_path
 from .models import comm, Comment,  ReComment
@@ -94,3 +95,14 @@ def recomment_delete(request, rc_pk):
     p = get_object_or_404(comm, pk=rc.post.post.pk)
     rc.delete()
     return redirect('board_detail', pk=p.pk)
+
+def search(request):
+    post=comm.objects.all().order_by('-id')
+
+    q = request.POST.get('search','')
+    if q:
+        post=post.filter(title__icontains=q)
+        return render(request, 'search.html',{'post':post, 'q':q})
+    else:
+        return render(request, 'search.html',{'post':post})
+

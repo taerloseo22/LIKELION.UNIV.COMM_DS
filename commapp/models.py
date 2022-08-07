@@ -9,6 +9,13 @@ class comm(models.Model):
     text = models.TextField()
     img = models.ImageField(blank=True, null=True, upload_to='lion_photo/%y/%m/%d/')
     file = models.FileField(blank=True, null=True,upload_to='lion_file/%y/%m/%d/')
+    OPTION = (
+        ('talk','TALK'),
+        ('issue','ISSUE'),
+        ('project','PROJECT'),
+        ('connent','CONNENT'),
+    )
+    tag = models.CharField(max_length=7, choices=OPTION)
 
     def __str__(self):
         return self.title
