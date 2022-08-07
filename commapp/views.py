@@ -11,6 +11,9 @@ from commapp.forms import CommentForm, commForm, ReCommentForm
 def main(request):
     return render(request, 'main.html')
 
+def test(request):
+    return render(request, 'test.html')
+
 def board_post(request):
     if request.method == 'POST' or request.method=='FILES': #POST요청 폼의 버튼을 눌렀다
         form  = commForm(request.POST, request.FILES) #form 유효성 확인
