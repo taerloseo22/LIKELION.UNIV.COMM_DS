@@ -134,10 +134,15 @@ class GithubUserView(View):
                     count += 1
                 else:
                     break
-        c=Commit()
-        c.commit = count
-        c.author = username
-        c.save()
+        commit=Commit.objects.all()
+        if commit.filter(author__icontains=username).exists():
+            # commit.author['username'].update(
+            #     commit = count
+            # )
+            commit.filter(author=username).update(commit = count)
+        else:
+            commit.author = username
+            commit.commit = count
         return render(request, 'commit.html',{'name':arr, 'repos':count})
         # return render(requset, 'commit.html',{'name':username, 'repos':arr})
 
