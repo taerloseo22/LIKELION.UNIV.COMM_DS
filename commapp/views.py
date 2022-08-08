@@ -110,24 +110,29 @@ class GithubUserView(View):
     def get(self, requset, username):
         # username,repos = requset.GET['username','repos']
         # repos = requset.GET['repos']
-        url1 = 'https://api.github.com/users/%s/repos' %(username)
+        url1 = 'https://api.github.com/users/%s/repos?per_page=100' %(username)
         response1 = requests.get(url1).json()
         arr = []
-        for i in range(len(response1)):
-            arr.append(response1[0]["name"])
-  
         count=0
+        for i in range(len(response1)-1, 0,-1):
+            push=response1[i]["pushed_at"]
+            push1 = push[0:10]
+            push2 = push1.split('-')
+            push3 = ''.join(push2)
+            if(20220803 <= int(push3)):
+                arr.append(response1[i]["name"])
+       
         for i in arr:
-            url = 'https://api.github.com/repos/%s/%s/commits' %(username, i)
+            url = 'https://api.github.com/repos/%s/%s/commits?per_page=100' %(username, i)
             response = requests.get(url).json()
             for j in range(len(response)):
                 time=response[j]["commit"]["author"]["date"]
                 string1 = time[0:10]
                 string1 = string1.split('-')
                 string = ''.join(string1)
-                if int(string) >= 202200807 :
+                if int(string) >= 20220803 :
                     count += 1
                 else:
                     break
-        # # return render(requset, 'commit.html',{'name':response[0]["commit"]["author"]["name"], 'repos':count})
-        return render(requset, 'commit.html',{'name':count})
+        return render(requset, 'commit.html',{'name':arr, 'repos':count})
+        # return render(requset, 'commit.html',{'name':username, 'repos':arr})
