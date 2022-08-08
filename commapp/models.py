@@ -41,6 +41,13 @@ class ReComment(models.Model):
         return self.post
 
 
+class Commit(models.Model):
+    # author = models.ForeignKey(User,on_delete=models.CASCADE)
+    author = models.TextField(max_length=50)
+    commit = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.author}::{self.commit}'
 
 
 

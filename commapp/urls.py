@@ -17,6 +17,6 @@ urlpatterns = [
     path('recomment_delete/<int:rc_pk>/', views.recomment_delete, name="recomment_delete"),
     path('board/search/', views.search,
     name="search"),
-    path('user/<str:username>/',views.GithubUserView.as_view(), name="user")
-    
+    path('user/<str:username>/',views.GithubUserView.as_view(), name="user"),
+    path('commit_rank/',views.commit_rank, name="commit_rank/")
     ] 

@@ -1,7 +1,7 @@
 from email import header
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import is_valid_path
-from .models import comm, Comment,  ReComment
+from .models import comm, Comment,  ReComment, Commit
 from django.views.generic import View
 from commapp.forms import CommentForm, commForm, ReCommentForm
 import requests 
@@ -107,7 +107,7 @@ def search(request):
         return render(request, 'search.html',{'post':post})
 
 class GithubUserView(View):
-    def get(self, requset, username):
+    def get(self, request, username):
         # username,repos = requset.GET['username','repos']
         # repos = requset.GET['repos']
         url1 = 'https://api.github.com/users/%s/repos?per_page=100' %(username)
@@ -134,5 +134,13 @@ class GithubUserView(View):
                     count += 1
                 else:
                     break
-        return render(requset, 'commit.html',{'name':arr, 'repos':count})
+        c=Commit()
+        c.commit = count
+        c.author = username
+        c.save()
+        return render(request, 'commit.html',{'name':arr, 'repos':count})
         # return render(requset, 'commit.html',{'name':username, 'repos':arr})
+
+def commit_rank(request):
+    commit = Commit.objects.all().order_by('-commit')
+    return render(request, 'commit_rank.html',{'commit':commit})
