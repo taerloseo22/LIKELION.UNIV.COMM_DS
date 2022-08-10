@@ -84,3 +84,41 @@ body{
   -webkit-transform: translateY(-8px) rotate(45deg);
   transform:translateY(-8px) rotate(45deg);
 }
+
+.navigation{
+  width: 100%;
+  max-height: 0px;
+  /* height: 250px; */
+  background-color: black;
+  z-index: -1;
+  display: none;
+}
+.toggle{
+  max-height: 250px !important;
+  display: block;
+  transition: 0.5s ease;
+}
+ul{
+  padding-left: 35px;
+  margin: 0%;
+  list-style: none;
+  font-weight: 800 !important;
+  font-size: 20px;
+}
+
+li{
+  margin-bottom: 10px;
+  padding-top: 14px;
+}
+a{
+  text-decoration: none;
+}
+a:link {  color:white;}
+a:visited {  color:white;}
+a:hover{
+  color: #FF9E1A;
+}
+
+.gomain{
+  margin-left: 15px;
+}

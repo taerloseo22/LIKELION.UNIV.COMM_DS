@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static './css/board.css' %}>
     <title>Document</title>
     <script>
         function option(e){
@@ -42,50 +43,57 @@
         }
     </script>
 </head>
-    <form action="{% url 'search' %}" method="post">
-        {% csrf_token %}
-        <input id="search" name="search" value="{{q}}">
-        <input type="submit" value="검색">
-    </form>
-    <p id="T" onclick='option(event)'>TALK</p>
-    <p id="I" onclick='option(event)'>ISSUE</p>
-    <p id="P" onclick='option(event)'>PROJECT</p>
-    <p id="C" onclick='option(event)'>CONNET</p>
-    <h4><a href="{% url 'board_post' %}">새글쓰기</a></h4>
-    
-<div id="talk" style="display: none;">    
-    {% for c in comm %}
-        {% if c.tag == "talk" %}
-        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-        {% endif %}
-    {% endfor %}
-</div>
+<body>
+    {% include 'nav.html' %}
+        <form action="{% url 'search' %}" method="post">
+            {% csrf_token %}
+            <input id="search" name="search" value="{{q}}">
+            <input type="submit" value="검색">
+        </form>
+        <p id="T" onclick='option(event)'>TALK</p>
+        <p id="I" onclick='option(event)'>ISSUE</p>
+        <p id="P" onclick='option(event)'>PROJECT</p>
+        <p id="C" onclick='option(event)'>CONNET</p>
+        
+        <div class="btn_contain">
+            <div class="newbtn">
+                <a href="{% url 'board_post' %}">+ 글쓰기</a>
+            </div>
+        </div>
+        
+        <div id="talk" style="display: none;">    
+            {% for c in comm %}
+                {% if c.tag == "talk" %}
+                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
 
-<div id="issue" style="display: none;">    
-    {% for c in comm %}
-        {% if c.tag == "issue" %}
-        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-        {% endif %}
-    {% endfor %}
-</div>
+        <div id="issue" style="display: none;">    
+            {% for c in comm %}
+                {% if c.tag == "issue" %}
+                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
 
-<div id="project" style="display: none;">    
-    {% for c in comm %}
-        {% if c.tag == "project" %}
-        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-        {% endif %}
-    {% endfor %}
-</div>
+        <div id="project" style="display: none;">    
+            {% for c in comm %}
+                {% if c.tag == "project" %}
+                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
 
-<div id="connent" style="display: none;">    
-    {% for c in comm %}
-        {% if c.tag == "connent" %}
-        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-        {% endif %}
-    {% endfor %}
-</div>
-   
+        <div id="connent" style="display: none;">    
+            {% for c in comm %}
+                {% if c.tag == "connent" %}
+                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
 
-
+        {% include 'footer.html' %}
 </body>
 </html>
