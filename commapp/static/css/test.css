@@ -6,6 +6,27 @@
     }
 }
 
+@media (max-width: 388px){
+  /* 480보다 클경우 - 모바일 */
+  .representativeTitle1{
+    font-size:12px !important;
+  }
+  .commit{
+    font-size:15px !important;
+  }
+  .now{
+    font-size: 1.2em !important;
+  }
+
+  .username2{
+      font-size: 1.2em !important;
+  }
+
+  .username1{
+      font-size: 1.2em !important;
+  }
+}
+
 @media (min-width:768px){
     body{
         width: 412px;
@@ -64,9 +85,10 @@ body{
 
   .swiper-slide img {
     display: block;
-    width: auto;
-    height: auto;
-    object-fit: fill; }
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+  }
   /* 배너 스와이프 끝*/
 
   /* card start */
@@ -111,7 +133,6 @@ body{
     border-top-right-radius:5px;
   }
   .representativeTitle1{
-    text-align:right;
     font-family:'Pretendard-Medium';
     font-size:16px;
     color:#848484;
