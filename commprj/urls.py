@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', views.main, name="main"),
     path('', include('commapp.urls')),
+    path('', view)
     path('accounts/',include('allauth.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
