@@ -47,3 +47,142 @@ body{
 .newbtn a:visited{
     color: white;
 }
+
+#talk > a:link, #issue > a:link, #project > a:link , #connent > a:link{
+    color: black !important;
+}
+#talk > a:hover, #issue > a:hover, #project > a:hover, #connent > a:hover{
+    color: black !important;
+}
+#talk > a:visited, #issue > a:visited, #project > a:visited, #connent > a:visited{
+    color: black !important;
+}
+
+.category{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* .postbox{
+
+} */
+
+.maintitle{
+    font-family: Pretendard !important;
+    font-size: 30px;
+    font-weight: 800;
+}
+  .link{
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin: 10px 25px 30px 25px;
+  }
+  .LinkComponent1{
+    width:100%;
+    background-color: #FFFFFF;
+    border-radius:5px;
+  }
+  .LinkComponent2{
+    /* width:344px; */
+    width:100%;
+    /* height:323px; */
+    /* margin-left:34px; */
+    /* margin-right:34px; */
+    margin-bottom:60px;
+    background-color: #FFFFFF;
+    border-radius:5px;
+  }
+
+  .representativeImg{
+    width:100%;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+  }
+  .representativeTitle1{
+    font-family:Pretendard;
+    font-size:16px;
+    color:#848484;
+    display:flex;
+    flex-direction: column;
+    margin-top:14.86px;
+    margin-left:15px;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .commit_detail{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+      margin-top: 10px;
+      margin-bottom: 10px;
+  }
+  .commit{
+    font-family:Pretendard;
+    font-size:20px;
+    color:#0E1013;
+    margin-top:1px;
+    font-weight: 700;
+  }
+
+  .section1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+  }
+
+  .outsection{
+    padding-top: 60px;
+  }
+
+
+  /* 인디케이터 */
+  .category p {
+    display: block;
+    padding: .75em 0;
+    color: #AEAEAE;
+    text-decoration: none;
+    text-align: center;
+    margin: 0px;
+    padding: 0px 3% 10px 3%;
+  }
+  .nav-underline {
+    position: absolute;
+    left: 3%;
+    bottom: -2px;
+    width: 15%;
+    height: 3px;
+    background: black;
+    transition: all .3s ease-in-out;
+  }
+  .category p:nth-child(1).is-current ~ .nav-underline {
+    left: 3%;
+  }
+  .category p:nth-child(2).is-current ~ .nav-underline {
+    left: 20%;
+  }
+  .category p:nth-child(3).is-current ~ .nav-underline {
+    left: 40%;
+  }
+  .category p:nth-child(4).is-current ~ .nav-underline {
+    left: 60%;
+  }
+  .category p:nth-child(1):hover ~ .nav-underline {
+    left: 0;
+  }
+  .category p:nth-child(2):hover ~ .nav-underline {
+    left: 20%;
+  }
+  .category p:nth-child(3):hover ~ .nav-underline {
+    left: 40%;
+  }
+  .category p:nth-child(4):hover ~ .nav-underline {
+    left: 60%;
+  }
+  
