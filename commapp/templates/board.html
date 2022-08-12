@@ -20,51 +20,55 @@
         <p id="I" onclick="option(event)">ISSUE</p>
         <p id="P" onclick="option(event)">PROJECT</p>
         <p id="C" onclick="option(event)">CONNECT</p>
+        <div class="nav-underline"></div>
       </div>
   
-      <div class="btn_contain">
-          <div class="newbtn">
-            <a href="{% url 'board_post' %}">+ 글쓰기</a>
-          </div>
-      </div>
-  
-      {% include 'footer.html' %}
-  
-      <div id="talk" style="display: block">
-        {% for c in comm %} {% if c.tag == "talk" %}
-        {% comment %} <div class="postbox">
-          <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-        </div> {% endcomment %}
-        {% comment %} <div class="MidSection"> {% endcomment %}
-          <div data-aos="fade-up" class="LinkComponent1">
-            <div class="link">
-              <img class="representativeImg" src={% static './img/commit.png' %}/>
-              <div class="representativeTitle1">
-                <div class="commit">{{ c.title }}</div>
-                <div class="commit_detail">{{ c.content }}</div>
-              </div>
+        <div class="postsection">
+            <div id="talk" style="display: block">
+                {% for c in comm %} {% if c.tag == "talk" %}
+                {% comment %} <div class="postbox">
+                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+                </div> {% endcomment %}
+                {% comment %} <div class="MidSection"> {% endcomment %}
+                <div data-aos="fade-up" class="LinkComponent1">
+                    <div class="link">
+                    <img class="representativeImg" src={% static './img/commit.png' %}/>
+                    <div class="representativeTitle1">
+                        <div class="commit">{{ c.title }}</div>
+                        <div class="commit_detail">{{ c.content }}</div>
+                    </div>
+                    </div>
+                {% comment %} </div> {% endcomment %}
+                {% endif %} {% endfor %}
             </div>
-          {% comment %} </div> {% endcomment %}
-        {% endif %} {% endfor %}
-      </div>
-  
-      <div id="issue" style="display: none">
-        {% for c in comm %} {% if c.tag == "issue" %}
-        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-        {% endif %} {% endfor %}
-      </div>
-  
-      <div id="project" style="display: none">
-        {% for c in comm %} {% if c.tag == "project" %}
-        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-        {% endif %} {% endfor %}
-      </div>
-  
-      <div id="connent" style="display: none">
-        {% for c in comm %} {% if c.tag == "connent" %}
-        <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-        {% endif %} {% endfor %}
-      </div>
+        
+            <div id="issue" style="display: none">
+                {% for c in comm %} {% if c.tag == "issue" %}
+                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+                {% endif %} {% endfor %}
+            </div>
+        
+            <div id="project" style="display: none">
+                {% for c in comm %} {% if c.tag == "project" %}
+                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+                {% endif %} {% endfor %}
+            </div>
+        
+            <div id="connent" style="display: none">
+                {% for c in comm %} {% if c.tag == "connent" %}
+                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
+                {% endif %} {% endfor %}
+            </div>
+        </div>
+      
+        <div class="btn_contain">
+            <div class="newbtn">
+            <a href="{% url 'board_post' %}">+ 글쓰기</a>
+            </div>
+        </div>
+
+    {% include 'footer.html' %}
+
     </div>
       
       <script>
