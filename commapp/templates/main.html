@@ -1,46 +1,62 @@
-<html>
-  <head>
-    {% load static %} <link rel="stylesheet" href={% static './css/main.css' %}>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
-    />
-  </head>
+<head>
+  {% load static %} 
+  <link rel="stylesheet" href={% static './css/test.css' %}>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+  />
+</head>
 
-  <body>
-    {% include 'nav.html' %}
-    <!-- Swiper -->
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src={% static './img/banner1.png' %}/>
-        </div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
+<body>
+  {% include 'nav.html' %}
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src= {% static './img/banner1.png' %}/>
       </div>
-      <div class="swiper-pagination"></div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
     </div>
-    <!-- Swiper end-->
+    <div class="swiper-pagination"></div>
+  </div>
+  <!-- Swiper end-->
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
-    <!-- Initialize Swiper -->
-    <script>
-      var swiper = new Swiper(".mySwiper", {
-        pagination: {
-          el: ".swiper-pagination",
-        },
-      });
-    </script>
-    <div class="outbox">
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      pagination: {
+        el: ".swiper-pagination",
+      },
+    });
+  </script>
+  <div class="MidSection">
+    <div data-aos="fade-up" class="LinkComponent1">
       <div class="now">현재 진행중인 이벤트</div>
-      <div class="card"></div>
-      <div class="now">김멋대님.</div>
-      <div class="now">많은 사자들의 작품 보고 가세요!</div>
-      <div class="card"></div>
+      <div class="link">
+        <img class="representativeImg" src={% static './img/commit.png' %}/>
+        <div class="representativeTitle1">
+          <div class="commit">1일 1커밋 대항전!</div>
+          <div class="commit_detail">누가누가 개발을 열심히 하고있을까요?</div>
+        </div>
+      </div>
     </div>
-    {% include 'footer.html' %}
-  </body>
+    <div data-aos="fade-up" class="LinkComponent2">
+      <div class="username1">님.</div>
+      <div class="username2">많은 사자들의 작품 보고 가세요!</div>
+      <div class="link" to="/Board">
+        <img class="representativeImg" src={% static './img/collection.png' %}/>
+        <div class="representativeTitle1">
+          <div class="commit">멋대 아기사자들의 작품방</div>
+          <div class="commit_detail">다양한 주제로 의견을 나누는 멋대만의 커뮤니티</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'footer.html' %}
+</body>
 </html>

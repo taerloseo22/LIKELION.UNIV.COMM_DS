@@ -5,6 +5,7 @@
   //# sourceMappingURL=jquery.min.map
   
 var burger = $('.menu-trigger');
+const navi = document.querySelector('.navigation');
 
 burger.each(function(index){
   var $this = $(this);
@@ -14,3 +15,9 @@ burger.each(function(index){
     $(this).toggleClass('active-' + (index+1));
   })
 });
+
+const CLICKED_CLASS = "toggle";
+
+function Openmenu(){
+   navi.classList.toggle(CLICKED_CLASS);
+}
