@@ -44,10 +44,12 @@
           <a href="{% url 'board_detail' pk=c.pk %}">
             <div data-aos="fade-up" class="LinkComponent1">
               <div class="link">
-                <img class="representativeImg" src={% static './img/commit.png' %}/>
+                {% if c.img %}
+                    <img src="{{c.img.url }}" class="representativeImg">
+                {% endif %} 
                 <div class="representativeTitle1">
                   <div class="commit">{{ c.title }}</div>
-                  <div class="commit_detail">{{ c.content }}</div>
+                  <div class="commit_detail">{{ c.text }}</div>
                 </div>
               </div>
             </div>
@@ -60,11 +62,13 @@
           <a href="{% url 'board_detail' pk=c.pk %}">
             <div data-aos="fade-up" class="LinkComponent1">
               <div class="link">
-                  <img class="representativeImg" src={% static './img/commit.png' %}/>
-                  <div class="representativeTitle1">
-                    <div class="commit">{{ c.title }}</div>
-                    <div class="commit_detail">{{ c.content }}</div>
-                  </div>
+                {% if c.img %}
+                  <img src="{{c.img.url }}" class="representativeImg">
+                {% endif %} 
+                <div class="representativeTitle1">
+                  <div class="commit">{{ c.title }}</div>
+                  <div class="commit_detail">{{ c.text }}</div>
+                </div>
               </div>
             </div>
           </a>
@@ -76,11 +80,13 @@
           <a href="{% url 'board_detail' pk=c.pk %}">
             <div data-aos="fade-up" class="LinkComponent1">
               <div class="link">
-                  <img class="representativeImg" src={% static './img/commit.png' %}/>
-                  <div class="representativeTitle1">
-                    <div class="commit">{{ c.title }}</div>
-                    <div class="commit_detail">{{ c.content }}</div>
-                  </div>
+                {% if c.img %}
+                  <img src="{{c.img.url }}" class="representativeImg">
+                {% endif %} 
+                <div class="representativeTitle1">
+                  <div class="commit">{{ c.title }}</div>
+                  <div class="commit_detail">{{ c.text }}</div>
+                </div>
               </div>
             </div>
           </a>
@@ -92,11 +98,13 @@
           <a href="{% url 'board_detail' pk=c.pk %}">
             <div data-aos="fade-up" class="LinkComponent1">
               <div class="link">
-                  <img class="representativeImg" src={% static './img/commit.png' %}/>
-                  <div class="representativeTitle1">
-                    <div class="commit">{{ c.title }}</div>
-                    <div class="commit_detail">{{ c.content }}</div>
-                  </div>
+                {% if c.img %}
+                  <img src="{{c.img.url }}" class="representativeImg">
+                {% endif %} 
+                <div class="representativeTitle1">
+                  <div class="commit">{{ c.title }}</div>
+                  <div class="commit_detail">{{ c.text }}</div>
+                </div>
               </div>
             </div>
           </a>

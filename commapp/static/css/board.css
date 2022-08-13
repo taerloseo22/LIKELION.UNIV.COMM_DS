@@ -126,6 +126,7 @@ body{
     -webkit-line-clamp: 3;
       margin-top: 10px;
       margin-bottom: 10px;
+      color: #0E1013;
   }
   .commit{
     font-family:Pretendard;
