@@ -6,9 +6,72 @@ body{
 
 }
 
-.footerout{
-    background-color: rgba(128, 128, 128, 0.589);
+/* .footerout{
+    background-color: #111;
+    
+    color: black;
+} */
+
+.outbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
     width: 100%;
     height: 200px;
-    color: black;
+}
+
+.contact{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.develop{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.copyright{
+    color: white;
+    font-size: 13px;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.part1{
+    margin-right: 32px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.part2{
+    margin-right: 96px;
+    font-size: 13px;
+    font-weight: bold;  
+}
+.name{
+    font-weight: 200;
+    font-size: 11px;
+}
+
+.developbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.footer_logo{
+    margin: 10px 0px 20px 0px;
+}
+
+.footer_line{
+    margin-bottom: 10px;
 }

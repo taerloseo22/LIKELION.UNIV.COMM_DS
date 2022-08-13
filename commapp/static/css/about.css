@@ -1,0 +1,173 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
+
+@media (max-width:257px){
+    body{
+        display: none;
+    }
+}
+
+@media (max-width: 388px){
+  /* 480보다 클경우 - 모바일 */
+  .representativeTitle1{
+    font-size:12px !important;
+  }
+  .commit{
+    font-size:15px !important;
+  }
+  .now{
+    font-size: 1.2em !important;
+  }
+
+  .username2{
+      font-size: 1.2em !important;
+  }
+
+  .username1{
+      font-size: 1.2em !important;
+  }
+}
+
+@media (min-width:768px){
+    body{
+        width: 412px;
+    }
+}
+
+body{
+    margin: 0 !important;
+    background-color: black;
+    font-family: Pretendard !important;
+}
+
+.outsection{
+    padding-top: 60px;
+    height: 100%;
+    /* overflow-y: scroll;
+    overflow-x: hidden; */
+}
+
+.mainment{
+    color: white;
+    font-family: Pretendard !important;
+    font-size: 40px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px 0px 50px 0px;
+}
+
+.section1{
+    display: flex;
+    flex-direction: column;
+}
+
+.hack1{
+    align-self: flex-end;
+}
+.hack2{
+    align-self: flex-start;
+    margin-bottom: 40px;
+}
+
+.line{
+    align-self: center;
+    margin-bottom: 40px;
+}
+
+.about{
+    align-self: center;
+    margin-bottom: 30px;
+    color: white;
+    font-family: Pretendard !important;
+    font-size: 25px;
+    font-weight: 600;
+}
+.mentbox1{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: Pretendard !important;
+    font-size: 16px;
+    font-weight: 200;
+    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.mentbox2{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: Pretendard !important;
+    font-size: 16px;
+    font-weight: 200;
+    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.mentbox3{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: Pretendard !important;
+    font-size: 16px;
+    font-weight: 200;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.marquee0{
+    color: white;
+}
+.marquee1{
+    color: white;
+}
+.marquee2{
+    color: white;
+}
+.marquee3{
+    color: white;
+}
+.marquee4{
+    color: white;
+}
+.marquee5{
+    color: white;
+}
+
+.infinitebox{
+    margin: 0px 20px 60px 20px;
+}
+
+.group{
+    align-self: center;
+    margin: 10px 10px 60px 10px;
+    object-fit: cover;
+    width: 90%;
+}
+
+.midsection{
+    display: flex;
+    flex-direction: column;
+}
+
+.RowLine1{
+    align-self: flex-end;
+}
+.RowLine2{
+    align-self: flex-start;
+    margin-bottom: 30px;
+}
+.university{
+    align-self: center;
+    color: white;
+    font-family: Pretendard !important;
+    font-size: 25px;
+    font-weight: 600;
+    margin: 30px 0px;
+}

@@ -42,7 +42,7 @@
         <div id="talk" style="display: block">
           {% for c in comm %} {% if c.tag == "talk" %}
           <a href="{% url 'board_detail' pk=c.pk %}">
-            <div data-aos="fade-up" class="LinkComponent1">
+            <div class="LinkComponent1">
               <div class="link">
                 {% if c.img %}
                     <img src="{{c.img.url }}" class="representativeImg">
@@ -60,7 +60,7 @@
         <div id="issue" style="display: none">
           {% for c in comm %} {% if c.tag == "issue" %}
           <a href="{% url 'board_detail' pk=c.pk %}">
-            <div data-aos="fade-up" class="LinkComponent1">
+            <div class="LinkComponent1">
               <div class="link">
                 {% if c.img %}
                   <img src="{{c.img.url }}" class="representativeImg">
@@ -78,7 +78,7 @@
         <div id="project" style="display: none">
           {% for c in comm %} {% if c.tag == "project" %}
           <a href="{% url 'board_detail' pk=c.pk %}">
-            <div data-aos="fade-up" class="LinkComponent1">
+            <div class="LinkComponent1">
               <div class="link">
                 {% if c.img %}
                   <img src="{{c.img.url }}" class="representativeImg">
@@ -96,7 +96,7 @@
         <div id="connent" style="display: none">
           {% for c in comm %} {% if c.tag == "connent" %}
           <a href="{% url 'board_detail' pk=c.pk %}">
-            <div data-aos="fade-up" class="LinkComponent1">
+            <div class="LinkComponent1">
               <div class="link">
                 {% if c.img %}
                   <img src="{{c.img.url }}" class="representativeImg">
