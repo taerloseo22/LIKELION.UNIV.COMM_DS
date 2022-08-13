@@ -16,8 +16,8 @@ function option(e) {
       connent.style.display = "none";
     } else if (e.target.id == "P") {
       talk.style.display = "none";
-      issue.style.display = "block";
-      project.style.display = "none";
+      issue.style.display = "none";
+      project.style.display = "block";
       connent.style.display = "none";
     } else if (e.target.id == "C") {
       talk.style.display = "none";
