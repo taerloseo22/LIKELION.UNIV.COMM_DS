@@ -2,8 +2,8 @@
     {% load static %}
     <link rel="stylesheet" href={% static './css/board.css' %}>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-  </head>
-    <body>
+</head>
+<body>
       {% include 'nav.html' %}
       <div class="outsection">
       <div class="section1">
@@ -38,84 +38,71 @@
         <div class="nav-underline"></div>
       </div>
   
-        <div class="postsection">
-            <div id="talk" style="display: block">
-                {% for c in comm %} {% if c.tag == "talk" %}
-                {% comment %} <div class="postbox">
-                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-                </div> {% endcomment %}
-                {% comment %} <div class="MidSection"> {% endcomment %}
-                <div data-aos="fade-up" class="LinkComponent1">
-                    <div class="link">
-                    <img class="representativeImg" src={% static './img/commit.png' %}/>
-                    <div class="representativeTitle1">
-                        <div class="commit">{{ c.title }}</div>
-                        <div class="commit_detail">{{ c.content }}</div>
-                    </div>
-                    </div>
-                {% comment %} </div> {% endcomment %}
-                {% endif %} {% endfor %}
+      <div class="postsection">
+        <div id="talk" style="display: block">
+          {% for c in comm %} {% if c.tag == "talk" %}
+          <div data-aos="fade-up" class="LinkComponent1">
+            <div class="link">
+              <img class="representativeImg" src={% static './img/commit.png' %}/>
+              <div class="representativeTitle1">
+                <div class="commit">{{ c.title }}</div>
+                <div class="commit_detail">{{ c.content }}</div>
+              </div>
             </div>
-        
-            <div id="issue" style="display: none">
-                {% for c in comm %} {% if c.tag == "issue" %}
-                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-                {% endif %} {% endfor %}
-            </div>
-        
-            <div id="project" style="display: none">
-                {% for c in comm %} {% if c.tag == "project" %}
-                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-                {% endif %} {% endfor %}
-            </div>
-        
-            <div id="connent" style="display: none">
-                {% for c in comm %} {% if c.tag == "connent" %}
-                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-                {% endif %} {% endfor %}
-            </div>
+          </div>  
+          {% endif %} {% endfor %}
         </div>
-      
-        <div class="btn_contain">
-            <div class="newbtn">
-            <a href="{% url 'board_post' %}">+ 글쓰기</a>
+        
+        <div id="issue" style="display: none">
+          {% for c in comm %} {% if c.tag == "issue" %}
+          <div data-aos="fade-up" class="LinkComponent1">
+            <div class="link">
+                <img class="representativeImg" src={% static './img/commit.png' %}/>
+                <div class="representativeTitle1">
+                  <div class="commit">{{ c.title }}</div>
+                  <div class="commit_detail">{{ c.content }}</div>
+                </div>
             </div>
+          </div>
+          {% endif %} {% endfor %}
         </div>
-
-    {% include 'footer.html' %}
-
+        
+        <div id="project" style="display: none">
+          {% for c in comm %} {% if c.tag == "project" %}
+          <div data-aos="fade-up" class="LinkComponent1">
+            <div class="link">
+                <img class="representativeImg" src={% static './img/commit.png' %}/>
+                <div class="representativeTitle1">
+                  <div class="commit">{{ c.title }}</div>
+                  <div class="commit_detail">{{ c.content }}</div>
+                </div>
+            </div>
+          </div>
+          {% endif %} {% endfor %}
+        </div>
+        
+        <div id="connent" style="display: none">
+          {% for c in comm %} {% if c.tag == "connent" %}
+          <div data-aos="fade-up" class="LinkComponent1">
+            <div class="link">
+                <img class="representativeImg" src={% static './img/commit.png' %}/>
+                <div class="representativeTitle1">
+                  <div class="commit">{{ c.title }}</div>
+                  <div class="commit_detail">{{ c.content }}</div>
+                </div>
+            </div>
+          </div>
+          {% endif %} {% endfor %}
+        </div>
+      </div>
+  </div>
+  <div class="btn_contain">
+    <div class="newbtn">
+      <a href="{% url 'board_post' %}">+ 글쓰기</a>
     </div>
+  </div>
+  {% include 'footer.html' %}
+  <script src={% static './js/category.js' %}></script>
       
-      <script>
-          function option(e) {
-            const talk = document.getElementById("talk");
-            const issue = document.getElementById("issue");
-            const project = document.getElementById("project");
-            const connent = document.getElementById("connent");
-    
-            if (e.target.id == "T") {
-              talk.style.display = "block";
-              issue.style.display = "none";
-              project.style.display = "none";
-              connent.style.display = "none";
-            } else if (e.target.id == "I") {
-              talk.style.display = "none";
-              issue.style.display = "block";
-              project.style.display = "none";
-              connent.style.display = "none";
-            } else if (e.target.id == "P") {
-              talk.style.display = "none";
-              issue.style.display = "block";
-              project.style.display = "none";
-              connent.style.display = "none";
-            } else if (e.target.id == "C") {
-              talk.style.display = "none";
-              issue.style.display = "none";
-              project.style.display = "none";
-              connent.style.display = "block";
-            }
-          }
-        </script>
-      
-    </body>
+</body>
   
