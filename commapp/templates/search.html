@@ -14,8 +14,4 @@
   </body>
 </html>
 
-<form action="{% url 'search' %}" method="post">
-  {% csrf_token %}
-  <input id="search" name="search" value="{{q}}" />
-  <input type="submit" value="검색" />
-</form>
+
