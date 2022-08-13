@@ -21,3 +21,12 @@ const CLICKED_CLASS = "toggle";
 function Openmenu(){
    navi.classList.toggle(CLICKED_CLASS);
 }
+
+// $(function(){ 
+//   $(document).mouseup(function (e){
+//     var LayerPopup = $(".toggle");
+//     if(LayerPopup.has(e.target).length === 0){
+//       navi.classList.remove(CLICKED_CLASS);
+//     }
+//     });
+// });
