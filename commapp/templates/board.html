@@ -8,12 +8,27 @@
       <div class="outsection">
       <div class="section1">
           <div class="maintitle">커뮤니티</div>
-          <div class="searchicon">
+          <button class="searchicon">
               <img class="icon" src={% static './img/searchicon.png' %}/>
-          </div>
+          </button>
       </div>
       {% csrf_token %}
       
+      <div class="modal">
+        <div class="modal_box">
+          <div class="modal_content">
+            <div class="searchtitle">검색</div>
+            <div class="inputout">
+              <form action="{% url 'search' %}" method="post">
+                {% csrf_token %}
+                <input id="search" name="search" value="{{q}}" placeholder="검색어를 입력하세요."/>
+                <input id="submitbtn" type="submit" value=""/>
+              </form>
+            </div>
+          </div>
+        </div>  
+      </div>
+      <script src={% static './js/modal.js' %}></script>
   
       <div class="category">
         <p id="T" onclick="option(event)">TALK</p>
