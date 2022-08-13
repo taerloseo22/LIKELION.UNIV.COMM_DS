@@ -1,0 +1,73 @@
+<head>
+    {% load static %} 
+    <link rel="stylesheet" href={% static './css/about.css' %}>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src={% static './js/crawler.js' %}></script>
+    <script src={% static './js/infinity.js' %}></script>
+</head>
+  
+  <body>
+    {% include 'nav.html' %}
+    <div class="outsection">
+        <div class="section1">
+            <img class="hack1" src={% static './img/hack.png' %}/>
+
+            <div class="mainment">
+                <span>내 아이디어를</span>
+                <span>내 손으로 실현한다</span>
+            </div>
+
+            <img class="hack2" src={% static './img/hack.png' %}/>
+            <img class="line" src={% static './img/line.png' %}/>
+
+            <div class="about">ABOUT US</div>
+            <div class="mentbox1">
+                <span>멋쟁이사자처럼 대학생은 멋쟁이사자처럼의 시작점으로</span>
+                <span>2013년 서울대학교 30명의 학생에게 Ruby on Rails</span>
+                <span>기반의 교육 프로그램을 진행하는 것으로 시작되었습니다.</span>
+            </div>
+            <div class="mentbox2">
+                <span>그 후 총 9년간 "내 아이디어를 내 손으로 실현한다"라는</span>
+                <span>가치 아래 전국 대학을 포함한 세계 130여개 대학에서 </span>
+                <span>선발된 8,400여명의 학생들이 활동하였으며 교육</span>
+                <span>프로그램을 통해 1,000여개의 서비스가 제작되었습니다.</span>
+            </div>
+            <div class="mentbox3">
+                <span>현재 국내에서 가장 많은 학생들이 활동하고 있는</span>
+                <span>프로그래밍 교육 프로그램이며, 현재는 Python</span>
+                <span>& Django 기반으로 교육을 진행하고 있습니다.</span>
+            </div>
+            <img class="group" src={% static './img/group.jpeg' %}/>
+        </div>
+
+        <div class="midsection">
+        <img class="RowLine1" src={% static './img/RowLine.png' %}/>
+        <div class="university">LIKELION UNIV.</div>
+        <img class="RowLine2" src={% static './img/RowLine.png' %}/>
+        </div>
+
+        <div class="infinitebox">
+            <div class="marquee" id="mycrawler1">
+                강원대학교 · 경북대학교 · 경상국립대학교 · 계명대학교 · 고려대학교(서울) · 고려대학교(세종) · 광운대학교<br>
+            </div>
+            <div class="marquee" id="mycrawler2">
+                국민대학교 · 금오공과대학교 · 덕성여자대학교 · 동국대학교 · 동덕여자대학교 · 명지대학교(자연) · 삼육대학교
+            </div>
+            <div class="marquee" id="mycrawler3">
+                상명대학교 · 서강대학교 · 서울대학교 · 서울여자대학교 · 성공회대학교 · 성균관대학교 · 성신여자대학교
+            </div>
+            <div class="marquee" id="mycrawler4">
+                숙명여자대학교 · 순천대학교 · 숭실대학교 · 연세대학교(서울) · 영남대학교 · 을지대학교(성남) · 이화여자대학교
+            </div>
+            <div class="marquee" id="mycrawler5">
+                인천대학교 · 인하대학교 · 전남대학교 · 중앙대학교 · 충북대학교 · 한국외국어대학교(글로벌) · 한국외국어대학교(서울)
+            </div>
+            <div class="marquee" id="mycrawler6">
+                한국항공대학교 · 한밭대학교 · 한서대학교(서산) · 한성대학교 · 한양대학교(서울) · 한양대학교(ERICA) · 홍익대학교
+            </div>
+        </div>
+
+        {% include 'footer.html' %}
+  </body>
+  </html>
+  
