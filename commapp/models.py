@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class comm(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField('',max_length=50)
     author = models.CharField(max_length=50)
     date = models.DateTimeField(auto_now_add=True)
-    text = models.TextField()
+    text = models.TextField('')
     img = models.ImageField(blank=True, null=True, upload_to='lion_photo/%y/%m/%d/')
     file = models.FileField(blank=True, null=True,upload_to='lion_file/%y/%m/%d/')
     OPTION = (

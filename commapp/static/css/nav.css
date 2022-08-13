@@ -124,6 +124,6 @@ li > a:hover{
 }
 .contain{
   position: fixed;
-  z-index: 500;
+  z-index: 700;
   width: 100%;
 }
