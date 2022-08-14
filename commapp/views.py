@@ -13,6 +13,9 @@ def main(request):
 def test(request):
     return render(request, 'test.html')
 
+def about(request):
+    return render(request, 'about.html')
+
 def board_post(request):
     if request.method == 'POST' or request.method=='FILES': #POST요청 폼의 버튼을 눌렀다
         form  = commForm(request.POST, request.FILES) #form 유효성 확인

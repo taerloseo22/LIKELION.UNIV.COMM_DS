@@ -1,107 +1,123 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
     <link rel="stylesheet" href={% static './css/board.css' %}>
-    <title>Document</title>
-    <script>
-        function option(e){
-            const talk = document.getElementById("talk")           
-            const issue = document.getElementById("issue")
-            const project = document.getElementById("project")
-            const connent = document.getElementById("connent")
-            
-            if(e.target.id=='T'){
-                talk.style.display='block';
-                issue.style.display='none';
-                project.style.display='none';
-                connent.style.display='none';
-            }
-            else if(e.target.id=='I')
-            {
-                talk.style.display='none';
-                issue.style.display='block';
-                project.style.display='none';
-                connent.style.display='none';
-            }
-            else if(e.target.id=='P')
-            {
-                talk.style.display='none';
-                issue.style.display='block';
-                project.style.display='none';
-                connent.style.display='none';
-            }else if(e.target.id=='C')
-            {
-                talk.style.display='none';
-                issue.style.display='none';
-                project.style.display='none';
-                connent.style.display='block';
-            }
-        }
-    </script>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
     {% include 'nav.html' %}
-        <form action="{% url 'search' %}" method="post">
-            {% csrf_token %}
-            <input id="search" name="search" value="{{q}}">
-            <input type="submit" value="검색">
-        </form>
-        {% if user.is_authenticated %}
-            {{ user.username }}님 안녕하세요
-            <button type="submit"><a href="{% url 'logout' %}">로그아웃</a></button>
-        {% else %}
-            방랑자님 안녕하세요
-            <button type="submit"><a href="{% url 'login' %}">로그인</a></button>
-            <button type="submit"><a href="{% url 'signup' %}">회원가입</a></button>
-        {% endif %}
-        <p id="T" onclick='option(event)'>TALK</p>
-        <p id="I" onclick='option(event)'>ISSUE</p>
-        <p id="P" onclick='option(event)'>PROJECT</p>
-        <p id="C" onclick='option(event)'>CONNET</p>
-        
-        <div class="btn_contain">
-            <div class="newbtn">
-                <a href="{% url 'board_post' %}">+ 글쓰기</a>
+    <div class="outsection">
+      <div class="topsection">
+        <div class="section1">
+            <div class="maintitle">커뮤니티</div>
+            <button class="searchicon">
+                <img class="icon" src={% static './img/searchicon.png' %}/>
+            </button>
+        </div>
+        <div class="category">
+          <p id="T" onclick="option(event)">TALK</p>
+          <p id="I" onclick="option(event)">ISSUE</p>
+          <p id="P" onclick="option(event)">PROJECT</p>
+          <p id="C" onclick="option(event)">CONNECT</p>
+          <div class="nav-underline"></div>
+        </div>
+      </div>
+      {% csrf_token %}
+      
+      <div class="modal">
+        <div class="modal_box">
+          <div class="modal_content">
+            <div class="searchtitle">검색</div>
+            <div class="inputout">
+              <form action="{% url 'search' %}" method="post">
+                {% csrf_token %}
+                <input id="search" name="search" value="{{q}}" placeholder="검색어를 입력하세요."/>
+                <input id="submitbtn" type="submit" value=""/>
+              </form>
             </div>
+          </div>
+        </div>  
+      </div>
+      <script src={% static './js/modal.js' %}></script>
+      <div class="postsection">
+        <div id="talk" style="display: block">
+          {% for c in comm %} {% if c.tag == "talk" %}
+          <a href="{% url 'board_detail' pk=c.pk %}">
+            <div class="LinkComponent1">
+              <div class="link">
+                {% if c.img %}
+                    <img src="{{c.img.url }}" class="representativeImg">
+                {% endif %} 
+                <div class="representativeTitle1">
+                  <div class="commit">{{ c.title }}</div>
+                  <div class="commit_detail">{{ c.text }}</div>
+                </div>
+              </div>
+            </div>
+          </a> 
+          {% endif %} {% endfor %}
         </div>
         
-        <div id="talk" style="display: none;">    
-            {% for c in comm %}
-                {% if c.tag == "talk" %}
-                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-                {% endif %}
-            {% endfor %}
-        </div>
-
-        <div id="issue" style="display: none;">    
-            {% for c in comm %}
-                {% if c.tag == "issue" %}
-                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-                {% endif %}
-            {% endfor %}
-        </div>
-
-        <div id="project" style="display: none;">    
-            {% for c in comm %}
-                {% if c.tag == "project" %}
-                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-                {% endif %}
-            {% endfor %}
-        </div>
-
-        <div id="connent" style="display: none;">    
-            {% for c in comm %}
-                {% if c.tag == "connent" %}
-                <a href="{% url 'board_detail' pk=c.pk %}">{{ c.title }}</a>
-                {% endif %}
-            {% endfor %}
+        <div id="issue" style="display: none">
+          {% for c in comm %} {% if c.tag == "issue" %}
+          <a href="{% url 'board_detail' pk=c.pk %}">
+            <div class="LinkComponent1">
+              <div class="link">
+                {% if c.img %}
+                  <img src="{{c.img.url }}" class="representativeImg">
+                {% endif %} 
+                <div class="representativeTitle1">
+                  <div class="commit">{{ c.title }}</div>
+                  <div class="commit_detail">{{ c.text }}</div>
+                </div>
+              </div>
+            </div>
+          </a>
+          {% endif %} {% endfor %}
         </div>
         
-
-        {% include 'footer.html' %}
+        <div id="project" style="display: none">
+          {% for c in comm %} {% if c.tag == "project" %}
+          <a href="{% url 'board_detail' pk=c.pk %}">
+            <div class="LinkComponent1">
+              <div class="link">
+                {% if c.img %}
+                  <img src="{{c.img.url }}" class="representativeImg">
+                {% endif %} 
+                <div class="representativeTitle1">
+                  <div class="commit">{{ c.title }}</div>
+                  <div class="commit_detail">{{ c.text }}</div>
+                </div>
+              </div>
+            </div>
+          </a>
+          {% endif %} {% endfor %}
+        </div>
+        
+        <div id="connent" style="display: none">
+          {% for c in comm %} {% if c.tag == "connent" %}
+          <a href="{% url 'board_detail' pk=c.pk %}">
+            <div class="LinkComponent1">
+              <div class="link">
+                {% if c.img %}
+                  <img src="{{c.img.url }}" class="representativeImg">
+                {% endif %} 
+                <div class="representativeTitle1">
+                  <div class="commit">{{ c.title }}</div>
+                  <div class="commit_detail">{{ c.text }}</div>
+                </div>
+              </div>
+            </div>
+          </a>
+          {% endif %} {% endfor %}
+        </div>
+      </div>
+  </div>
+  <div class="btn_contain">
+    <div class="newbtn">
+      <a href="{% url 'board_post' %}">+ 글쓰기</a>
+    </div>
+  </div>
+  <script src={% static './js/category.js' %}></script>
+      
 </body>
-</html>
+  

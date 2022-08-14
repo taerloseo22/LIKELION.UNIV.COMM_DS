@@ -5,8 +5,10 @@ from django.contrib.auth.models import User
 class comm(models.Model):
     title = models.CharField(max_length=50)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+    # title = models.CharField('',max_length=50)
+    # author = models.CharField(max_length=50)
     date = models.DateTimeField(auto_now_add=True)
-    text = models.TextField()
+    text = models.TextField('')
     img = models.ImageField(blank=True, null=True, upload_to='lion_photo/%y/%m/%d/')
     file = models.FileField(blank=True, null=True,upload_to='lion_file/%y/%m/%d/')
     OPTION = (
@@ -43,7 +45,7 @@ class ReComment(models.Model):
 
 class Commit(models.Model):
     # author = models.ForeignKey(User,on_delete=models.CASCADE)
-    author = models.TextField(max_length=50)
+    author = models.TextField('',max_length=50)
     commit = models.IntegerField(null=True, blank=True)
 
     def __str__(self):

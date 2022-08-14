@@ -133,7 +133,7 @@ body{
     border-top-right-radius:5px;
   }
   .representativeTitle1{
-    font-family:'Pretendard-Medium';
+    font-family:Pretendard;
     font-size:16px;
     color:#848484;
     display:flex;
@@ -148,10 +148,13 @@ body{
       margin-bottom: 10px;
   }
   .commit{
-    font-family:'Pretendard-Bold';
+    font-family:Pretendard;
     font-size:20px;
     color:#0E1013;
     margin-top:1px;
+    font-weight: 700;
   }
-  
+  .outsection{
+    padding-top: 60px;
+  }
   /* card end */

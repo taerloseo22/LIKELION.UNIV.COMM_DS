@@ -6,54 +6,55 @@
 
   <body>
     <div class="contain">
-        <div class="nav-container">
-          <div class="gomain">
-            <a href="{% url 'main' %}" class="logo">
-              <img src={% static './img/navlogo.png' %} class="logo1">
-              <div class="text">LIKELION.UNIV</div>
-            </a>
-          </div>
-          <a class="menu-trigger" href="#" onclick="Openmenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+      <div class="nav-container">
+        <div class="gomain">
+          <a href="{% url 'main' %}" class="logo">
+            <img src={% static './img/navlogo.png' %} class="logo1">
+            <div class="text">LIKELION.UNIV</div>
           </a>
         </div>
-        <div class="navigation">
-          <ul>  
-            <li>
-              <a href="#">
-                <span>ABOUT</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>NOTICE</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>COMMUNITY</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>RANKING</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>MYPAGE</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>LOGIN</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+        {% comment %} <a class="menu-trigger" href="#" onclick="Openmenu()"> {% endcomment %}
+        <a class="menu-trigger" href="#" onclick="Openmenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
       </div>
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="{% url 'about' %}">
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>NOTICE</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'board' %}">
+              <span>COMMUNITY</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>RANKING</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>MYPAGE</span>
+            </a>
+          </li>
+          {% comment %} <li>
+            <a href="#">
+              <span>LOGIN</span>
+            </a>
+          </li> {% endcomment %}
+        </ul>
+      </div>
+    </div>
     <script src="/static/js/menu.js"></script>
   </body>
 </html>
