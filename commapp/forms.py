@@ -17,3 +17,15 @@ class ReCommentForm(forms.ModelForm):
     class Meta:
         model = ReComment
         fields = ('content', )
+
+# class RegisterForm(UserCreationForm):
+#     email = forms.EmailField(label="likelion 이메일")
+#     github_email = forms.EmailField(label="github 아이디")
+#     class Meta:
+#         model = User
+#         fields = ['username','password1','password2','github_email', 'email']
+
+# class loginForm(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ['email','password1']

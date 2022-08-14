@@ -1,12 +1,10 @@
-from email import header
+from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import is_valid_path
+from django.core.exceptions import PermissionDenied
 from .models import comm, Comment,  ReComment, Commit
-from django.views.generic import View
+from django.views.generic import View, CreateView
 from commapp.forms import CommentForm, commForm, ReCommentForm
-import requests 
 # Create your views here.
-
 
 def main(request):
     return render(request, 'main.html')
@@ -19,6 +17,7 @@ def board_post(request):
         form  = commForm(request.POST, request.FILES) #form 유효성 확인
         if form.is_valid():
             c = form.save(commit=False) #db에 당장 저장x
+            c.user = request.user
             c.save()
             return redirect('board_detail', pk = c.pk)
     else: #GET요청 웹 브라우저에서 페이지 접속
@@ -58,7 +57,7 @@ def comment_create(request, pk):
     if filled_form.is_valid():
         finished_form = filled_form.save(commit=False)
         finished_form.post = get_object_or_404(comm, pk=pk)
-        finished_form.author = request.user
+        finished_form.user = request.user
         finished_form.save()
     return redirect('board_detail', pk)
 
@@ -85,7 +84,7 @@ def recomment_create(request,c_pk):
     if filled_form.is_valid():
         finished_form = filled_form.save(commit=False)
         finished_form.post = get_object_or_404(Comment, pk=c_pk)
-        finished_form.author = request.user
+        finished_form.user = request.user
         finished_form.save()
     return redirect('board_detail', pk=finished_form.post.post.pk)
 
@@ -149,3 +148,6 @@ class GithubUserView(View):
 def commit_rank(request):
     commit = Commit.objects.all().order_by('-commit')
     return render(request, 'commit_rank.html',{'commit':commit})
+
+def mypage(request):
+    return render(request, 'mypage.html')
