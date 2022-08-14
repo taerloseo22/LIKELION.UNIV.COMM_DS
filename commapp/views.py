@@ -4,6 +4,7 @@ from django.core.exceptions import PermissionDenied
 from .models import comm, Comment,  ReComment, Commit
 from django.views.generic import View, CreateView
 from commapp.forms import CommentForm, commForm, ReCommentForm
+import requests
 # Create your views here.
 
 def main(request):

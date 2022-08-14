@@ -1,3 +1,4 @@
+
 from django.shortcuts import render,redirect
 # from accounts.forms import UserForm
 from django.contrib.auth import authenticate, login
@@ -12,10 +13,26 @@ def signup(request):
                 username = request.POST['username'],
                 password = request.POST['password1'],
                 email = request.POST['email'],
-                last_name = request.POST['last_name'],
             )
             auth.login(request, user)
             return redirect('board')
         return render(request, 'signup.html')
     return render(request, 'signup.html')
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect("board")
+        else:
+            return render(request, 'login.html')
+    else:
+        return render(request, 'login.html')
+
+def logout(requset):
+    auth.logout(requset)
+    return redirect('board')       
 
