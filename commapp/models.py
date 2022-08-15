@@ -47,12 +47,12 @@ class ReComment(models.Model):
 
 
 class Commit(models.Model):
-    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, related_name = "userof", on_delete=models.CASCADE)
     gitName = models.CharField(max_length=50)
     commit = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return f'{self.author}::{self.commit}'
+        return f'{self.gitName}'
 
 
 

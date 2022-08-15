@@ -15,10 +15,10 @@
     <button type="submit"><a href="{% url 'login' %}">로그인</a></button>
   {% endif %}  
     {{ user.username }}님 안녕하세요
-    <!-- <form method="post" action="{% url 'Co' %}">{% csrf_token %} 
+    <form method="post" action="{% url 'Co' %}">{% csrf_token %} 
         <label for="gitName">gitName</label>    
         <input type="text" name="gitName" placeholder="깃 이름을 입력해주세요">
         <input type="submit">
-    </form> -->
+    </form>
 </body>
 </html>

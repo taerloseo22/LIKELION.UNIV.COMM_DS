@@ -8,7 +8,8 @@
 </head>
 <body>
     {% for c in commit %}
-        {{ c.author }}
+        {{ c.user.nickname }}
+        {{ c.user }}
         {{ c.commit }}
         <br>
     {% endfor %}

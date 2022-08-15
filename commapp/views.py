@@ -1,3 +1,4 @@
+from this import d
 from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.exceptions import PermissionDenied
@@ -5,6 +6,7 @@ from .models import comm, Comment,  ReComment, Commit
 from django.views.generic import View, CreateView
 from commapp.forms import CommentForm, commForm, ReCommentForm
 import requests
+from account.models import CustomUser
 # Create your views here.
 
 def main(request):
@@ -160,10 +162,11 @@ def mypage(request):
 
 
 
-def Co(self, request):
+def Co(request):
     # username,repos = requset.GET['username','repos']
     # repos = requset.GET['repos']
-    username=request.POST['gitName']
+    username=request.POST['gitName']  
+    CustomUser.git = username
     url1 = 'https://api.github.com/users/%s/repos?per_page=100' %(username)
     response1 = requests.get(url1).json()
     arr = []
@@ -190,11 +193,21 @@ def Co(self, request):
                 break
     commit=Commit.objects.all()
     if commit.filter(gitName__icontains=username).exists():
-        # commit.author['username'].update(
-        #     commit = count
-        # )
         commit.filter(gitName=username).update(commit = count)
     else:
-        commit.gitName = username
-        commit.commit = count
+        Commit.objects.create(
+            user = request.user,
+            gitName = username,
+            commit = count
+        )
+
+    #     commit.author['username'].update(
+    #         commit = count
+    #     )
+    #     commit.filter(gitName=username).update(commit = count)
+    #     commit.save()
+    # else:
+    #     c = Commit.objects.create(gitName = username, commit = count)
+    #     c.save()
     return render(request, 'commit.html',{'name':arr, 'repos':count})
+    # return render(request, 'commit.html',{'commit':c})
