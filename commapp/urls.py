@@ -21,4 +21,5 @@ urlpatterns = [
     path('user/<str:username>/',views.GithubUserView.as_view(), name="user"),
     path('commit_rank/',views.commit_rank, name="commit_rank"),
     path('mypage/',views.mypage, name="mypage"),
+    path('commit/',views.Co, name="Co"),
     ] 

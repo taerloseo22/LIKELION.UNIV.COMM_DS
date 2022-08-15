@@ -29,7 +29,7 @@ def board_post(request):
     return render(request, 'board_post.html', {'form':form})
 
 def board(request):
-    c = comm.objects.all()
+    c = comm.objects.all().order_by('-id')
     return render(request, 'board.html',{'comm':c})
 
 def board_detail(request, pk):
@@ -138,13 +138,13 @@ class GithubUserView(View):
                 else:
                     break
         commit=Commit.objects.all()
-        if commit.filter(author__icontains=username).exists():
+        if commit.filter(gitName__icontains=username).exists():
             # commit.author['username'].update(
             #     commit = count
             # )
-            commit.filter(author=username).update(commit = count)
+            commit.filter(gitName=username).update(commit = count)
         else:
-            commit.author = username
+            commit.gitName = username
             commit.commit = count
         return render(request, 'commit.html',{'name':arr, 'repos':count})
         # return render(requset, 'commit.html',{'name':username, 'repos':arr})
@@ -154,4 +154,47 @@ def commit_rank(request):
     return render(request, 'commit_rank.html',{'commit':commit})
 
 def mypage(request):
+    # commit=Commit.objects.all()
+    # commit.gitName=request.POST['gitName']
     return render(request, 'mypage.html')
+
+
+
+def Co(self, request):
+    # username,repos = requset.GET['username','repos']
+    # repos = requset.GET['repos']
+    username=request.POST['gitName']
+    url1 = 'https://api.github.com/users/%s/repos?per_page=100' %(username)
+    response1 = requests.get(url1).json()
+    arr = []
+    count=0
+    for i in range(len(response1)-1, 0,-1):
+        push=response1[i]["pushed_at"]
+        push1 = push[0:10]
+        push2 = push1.split('-')
+        push3 = ''.join(push2)
+        if(20220803 <= int(push3)):
+            arr.append(response1[i]["name"])
+    
+    for i in arr:
+        url = 'https://api.github.com/repos/%s/%s/commits?per_page=100' %(username, i)
+        response = requests.get(url).json()
+        for j in range(len(response)):
+            time=response[j]["commit"]["author"]["date"]
+            string1 = time[0:10]
+            string1 = string1.split('-')
+            string = ''.join(string1)
+            if int(string) >= 20220803 :
+                count += 1
+            else:
+                break
+    commit=Commit.objects.all()
+    if commit.filter(gitName__icontains=username).exists():
+        # commit.author['username'].update(
+        #     commit = count
+        # )
+        commit.filter(gitName=username).update(commit = count)
+    else:
+        commit.gitName = username
+        commit.commit = count
+    return render(request, 'commit.html',{'name':arr, 'repos':count})

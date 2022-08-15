@@ -9,9 +9,10 @@
     <title>Document</title>
 </head>
     {% include 'nav.html' %}
-
+    <br><br><br>
     <h1>{{ comm.title }}</h1>
     {{ comm.user }}
+    {{ comm.date }}<br> 
     {% if comm.img %}
         <img src="{{comm.img.url }}" width="500px">
     {% endif %} 
