@@ -8,15 +8,21 @@
     <title>Document</title>
   </head>
   <body>
-    {% include 'nav.html' %}
-    <div class="outsection">
-      <div class="maintitle"></div>
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %} {{ form.as_p }}
-        <button type="submit">submit</button>
-      </form>
-    {% include 'footer.html' %}
-    </div>
+    {% if user.is_authenticated %}
+      {% include 'nav.html' %}
+      <div class="outsection">
+        <div class="maintitle"></div>
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %} {{ form.as_p }}
+          <button type="submit">submit</button>
+        </form>
+      {% include 'footer.html' %}
+      </div>
+    
+    {% else %}
+        <h1>로그인이 필요합니다</h1>
+        <h2><a href="{% url 'login' %}">로그인 하러가기</a></h2>
+    {% endif %}
     <script src={% static './js/enter.js' %}></script>
   </body>
 </html>

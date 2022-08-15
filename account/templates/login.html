@@ -7,11 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    {% for c in commit %}
-        {{ c.user.nickname }}
-        {{ c.user }}
-        {{ c.commit }}
-        <br>
-    {% endfor %}
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">submit</button>
+    </form>
 </body>
 </html>
