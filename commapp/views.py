@@ -1,4 +1,5 @@
 from this import d
+from turtle import update
 from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.exceptions import PermissionDenied
@@ -156,9 +157,9 @@ def commit_rank(request):
     return render(request, 'commit_rank.html',{'commit':commit})
 
 def mypage(request):
-    # commit=Commit.objects.all()
+    commit=Commit.objects.all()
     # commit.gitName=request.POST['gitName']
-    return render(request, 'mypage.html')
+    return render(request, 'mypage.html',{'commit':commit})
 
 
 
@@ -166,7 +167,8 @@ def Co(request):
     # username,repos = requset.GET['username','repos']
     # repos = requset.GET['repos']
     username=request.POST['gitName']  
-    CustomUser.git = username
+
+    # CustomUser.git =request.POST['gitName'] 
     url1 = 'https://api.github.com/users/%s/repos?per_page=100' %(username)
     response1 = requests.get(url1).json()
     arr = []
@@ -200,7 +202,7 @@ def Co(request):
             gitName = username,
             commit = count
         )
-
+    CustomUser.objects.filter(username=request.user).update(git=username)
     #     commit.author['username'].update(
     #         commit = count
     #     )
