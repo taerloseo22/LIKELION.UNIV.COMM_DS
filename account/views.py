@@ -9,10 +9,11 @@ def login(request):
     form = AuthenticationForm(request=request, data=request.POST)
     if form.is_valid():
         username = form.cleaned_data.get("username")
-        password1 = form.cleaned_data.get("password1")
-        user = authenticate(request=request, username=username, password1=password1)
+        password = form.cleaned_data.get("password")
+        user = authenticate(request=request, username=username, password=password)
         if user is not None:
             auth.login(request, user)
+            return redirect('mypage')
         return redirect('login')
     else:
         form = AuthenticationForm()
@@ -20,7 +21,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect("board")
+    return redirect("main")
 
 def signup(request):
     if request.method == 'POST':
