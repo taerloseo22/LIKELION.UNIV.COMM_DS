@@ -1,23 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="{% url 'signup' %}" method="post">
-        {% csrf_token %}
-        <label for="username">likelion.org id</label>
-        {{ form.username }}<br>
-        <label for="password1">password</label>
-        {{ form.password1 }}<br>
-        <label for="password2">entry password</label>
-        {{ form.password2 }}<br>
-        <label for="nickname">nickname</label>
-        {{ form.nickname }}<br>
-        <button type="submit">submit</button>
-    </form>
-</body>
+<html>
+  <head>
+    {% load static %} 
+    <link rel="stylesheet" href={% static './css/signup.css'%}>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+  </head>
+    <body>
+        {% include 'nav.html' %}
+            <div class="outsection">
+                <div class="maintitle">로그인</div>
+                <form action="{% url 'signup' %}" method="post">
+                    {% csrf_token %}
+                    <label for="username">likelion.org id</label>
+                    {{ form.username }}<br>
+                    <label for="password1">password</label>
+                    {{ form.password1 }}<br>
+                    <label for="password2">entry password</label>
+                    {{ form.password2 }}<br>
+                    <label for="nickname">nickname</label>
+                    {{ form.nickname }}<br>
+                    <button type="submit">submit</button>
+                </form>
+            </div>
+        {% include 'footer.html' %}
+    </body>
 </html>

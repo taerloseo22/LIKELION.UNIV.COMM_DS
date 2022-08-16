@@ -6,11 +6,6 @@
     }
 }
 
-@media (max-width: 388px){
-  /* 480보다 클경우 - 모바일 */
-  
-}
-
 @media (min-width:768px){
     body{
         width: 412px;
@@ -20,5 +15,156 @@
 body{
     margin: 0 !important;
     font-family: Pretendard !important;
+}
 
+.outsection{
+    padding-top: 60px;
+    height: 65%;
+    /* overflow-y: scroll;
+    overflow-x: hidden; */
+}
+
+.inform{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.postimg{
+    width: 90%;
+}
+
+.userbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.userbox a:link{
+    color: #868E96;
+}
+
+.userbox a:visited{
+    color: #868E96;
+}
+
+.head-wrapper{
+    padding-top: 60px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 40px;
+}
+
+.userbox a + a {
+    margin-left: 0.5rem;
+}
+
+.downbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #868E96;
+    border-radius: 5px;
+    height: 40px;
+    margin-bottom: 20px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+
+.postsection{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.12rem;
+    line-height: 1.7;
+}
+
+.postsection a{
+    width: 100%;
+}
+
+.postsection a:link{
+    text-decoration: none;
+    color: black;
+}
+
+.postsection a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+.downbox .chumboo{
+    font-weight: 700;
+}
+
+.postimg{
+    display: block;
+    margin: 3rem auto;
+}
+
+.seperate{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.line{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background: #E9ECEF;
+    width: 100%;
+    height: 1px;
+}
+
+.commentsection{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.commentsection label{
+    display: none;
+}
+
+form:nth-of-type(1) div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+form:nth-of-type(1) div textarea{
+    align-self: center;
+    margin-bottom: 10px;
+    width: 100%;
+    resize: none;
+    font-size: 1em;
+    height: 70px;
+    font-family: Pretendard;
+    padding: 1rem 1rem 1.5rem;
+    border: 1px solid #F1F3F5;
+}
+form:nth-of-type(1) div button{
+    align-self: flex-end;
+    width: 30%;
+    border: none;
+    background-color: #FF9E1A;
+    padding : 2px 1em;
+    color: white;
+    border-radius: 3px;
+    height: 2rem;
+    font-size: 1rem;
+    font-family: Pretendard;
+    font-weight: bold;
+}
+
+h4{
+    font-size: 1.125rem;
+    line-height: 1.5;
+    font-weight: 600;
 }
