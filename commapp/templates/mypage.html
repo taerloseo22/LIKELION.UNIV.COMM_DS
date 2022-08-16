@@ -44,11 +44,6 @@
         {% endif %}
         </div>
         <a href="readme(name,repo)"
-        {% else %}
-          방랑자님 안녕하세요
-          <button type="submit"><a href="{% url 'login' %}">로그인</a></button>
-        {% endif %} 
-      
         <div class="extrasection">
           <a href="{% url 'logout' %}" class="logout">
             <button type="submit">
@@ -56,6 +51,10 @@
             </button> 
           </a>
         </div>
+        {% else %}
+          방랑자님 안녕하세요
+          <button type="submit"><a href="{% url 'login' %}">로그인</a></button>
+        {% endif %} 
 
   </div>
 </body>

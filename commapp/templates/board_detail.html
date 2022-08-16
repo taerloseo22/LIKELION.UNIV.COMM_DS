@@ -41,6 +41,7 @@
 
         <div class="commentsection">
             <h4>댓글</h4>
+            {% if user.is_authenticated %}
             <form method="POST" action="{% url 'comment_create' pk=comm.pk %}">
                 {% csrf_token %}
                 <div>
@@ -48,6 +49,12 @@
                     <button type="submit">댓글 작성</button>
                 </div>
             </form>
+            {% else %}
+            <a href="#">
+                <div class="nocomment">로그인이 필요한 기능입니다</div>
+            </a>
+            {% endif %}
+            
             {% if comm.comment_set.exists %}
                 {% for comment in comm.comment_set.iterator %}
                 <div id="{{comment.pk}}">
