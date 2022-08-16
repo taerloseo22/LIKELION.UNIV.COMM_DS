@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'account',
     'bootstrap4',
     'markdownx',
+    'markdown_deux',
 ]
 
 MIDDLEWARE = [
