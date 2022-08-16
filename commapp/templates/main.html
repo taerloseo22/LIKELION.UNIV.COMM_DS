@@ -54,8 +54,12 @@
         </a>
       </div>
       <div class="LinkComponent2">
-        <div class="username1">님.</div>
-        <div class="username2">많은 사자들의 작품 보고 가세요!</div>
+        {% if user.is_authenticated %}
+          <div class="username1">{{ user.nickname }}님.</div>
+          <div class="username2">많은 사자들의 작품 보고 가세요!</div>
+        {% else %}
+          <div class="username2">멋쟁이 사자들의 작품 보고 가세요!</div>
+        {% endif %}
         <a href="{% url 'board' %}">
           <div class="link">
             <img class="representativeImg" src={% static './img/collection.png' %}/>

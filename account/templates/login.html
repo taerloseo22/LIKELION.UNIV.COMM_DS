@@ -7,10 +7,10 @@
   <body>
     {% include 'nav.html' %}
     <div class="outsection">
-      <div class="maintitle">커뮤니티</div>
+      <div class="maintitle">로그인</div>
       <form action="{% url 'login' %}" method="post">
         {% csrf_token %} {{ form }}
-        <button type="submit">submit</button>
+        <button type="submit">로그인</button>
       </form>
     </div>
     {% include 'footer.html' %}
