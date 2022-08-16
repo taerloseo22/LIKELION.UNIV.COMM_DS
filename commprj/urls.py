@@ -23,5 +23,7 @@ urlpatterns = [
     # path('', views.main, name="main"),
     path('', include('commapp.urls')),
     path('test/', views.test, name="test"),
-    path('account/',include('account.urls'))
+    path('account/',include('account.urls')),
+    path('markdownx/', include('markdownx.urls')),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

@@ -1,6 +1,8 @@
 from django.db import models
 from commprj import settings
 from account.models import CustomUser
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdown
 # from django.contrib.auth.models import User
 
 # Create your models here.
@@ -11,7 +13,7 @@ class comm(models.Model):
     # title = models.CharField('',max_length=50)
     # author = models.CharField(max_length=50)
     date = models.DateTimeField(auto_now_add=True)
-    text = models.TextField('')
+    text = MarkdownxField()
     img = models.ImageField(blank=True, null=True, upload_to='lion_photo/%y/%m/%d/')
     file = models.FileField(blank=True, null=True,upload_to='lion_file/%y/%m/%d/')
     OPTION = (
@@ -24,6 +26,9 @@ class comm(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_content_markdown(self):
+        return markdown(self.content)
 
 class Comment(models.Model):
     post = models.ForeignKey(comm, on_delete=models.CASCADE)
