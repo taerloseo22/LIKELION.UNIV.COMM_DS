@@ -12,5 +12,7 @@
         <b>{{ i }}</b><br>
     {% endfor %}
     <h4>총 커밋수는 {{ repos }}입니다</h4>
+
+    <a href="{% url 'commit_rank' %}">내 전체 등수는?</a>
 </body>
 </html>

@@ -1,5 +1,3 @@
-from this import d
-from turtle import update
 from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.exceptions import PermissionDenied
@@ -8,6 +6,8 @@ from django.views.generic import View, CreateView
 from commapp.forms import CommentForm, commForm, ReCommentForm
 import requests
 from account.models import CustomUser
+import base64
+from urllib import parse
 # Create your views here.
 
 def main(request):
@@ -157,9 +157,32 @@ def commit_rank(request):
     return render(request, 'commit_rank.html',{'commit':commit})
 
 def mypage(request):
+    name = "DAASHeo"
+    repo = "DAASHeo"
     commit=Commit.objects.all()
-    # commit.gitName=request.POST['gitName']
-    return render(request, 'mypage.html',{'commit':commit})
+    # # # commit.gitName=request.POST['gitName']
+    url = 'https://api.github.com/repos/%s/%s/readme' %(name,repo)
+    response = requests.get(url).json()
+    readme=response.get('content')
+    # # read=readme.decode("UTF-8")
+    r=base64.b64decode(readme)
+    read=r.decode("UTF-8")
+    x=read.replace('<h1>','#').replace('<h2>','##').replace('<h3>','###').replace('<h4>','####').replace('<h5>','#####').replace('<h6>','######').replace('<p>','').replace('</h1>','').replace('</h2>','').replace('</h3>','').replace('</h4>','').replace('</h5>','').replace('</h6>','').replace('</p>','').replace('<br>','').replace('<br/>','').replace('<strong>','**').replace('</strong>','**')
+    # for i in x:
+    #     if x.find('<!--'):
+    #     z1=x.find('<!--')
+    #     a=x[:z1]
+    #     z2=x.find('-->')
+    #     b=x[z2+3:]
+    #     c=a+b
+    #readme=parse.urlencode(response, encoding='UTF-8', doseq=True)
+                # .then((response) => response.json())
+                # .then((data) =>{
+                #     console.log(data) // json 파일
+                #     console.log(data.content) //파일 내용 base64로 받아와진다
+                #     document.write(decodeURIComponent(atob(data.content))); //utf-8로 디코딩
+                # });
+    return render(request, 'mypage.html',{'commit':commit,'readme':x})
 
 
 
@@ -177,7 +200,7 @@ def Co(request):
         push1 = push[0:10]
         push2 = push1.split('-')
         push3 = ''.join(push2)
-        if(20220803 <= int(push3)):
+        if(20220815 <= int(push3)):
             arr.append(response1[i]["name"])
     
     for i in arr:
@@ -188,7 +211,7 @@ def Co(request):
             string1 = time[0:10]
             string1 = string1.split('-')
             string = ''.join(string1)
-            if int(string) >= 20220803 :
+            if int(string) >= 20220815 :
                 count += 1
             else:
                 break
