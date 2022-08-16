@@ -30,15 +30,66 @@ body{
 .form-control{
     border: none;
     border-bottom: 1px solid #CCC;
-    margin-left: 10px;
+    margin-left: 20px;
     font-size: 25px;
     font-family: Pretendard;
     font-weight: 500;
+    outline: none;
+    width: 90%;
 }
 
-.form-textarea{
-    margin-left: 10px;
-    border: none;
-    height: 300px;
+p:nth-of-type(1) input:focus{
+    border-bottom: 2px solid black;
+}
+
+p:nth-of-type(2){
+    margin-left: 20px;
+}
+
+p:nth-of-type(3){
+    display: none;
+}
+
+p:nth-of-type(5){
+    margin-left: 20px;
+}
+
+p:nth-of-type(6){
+    margin-left: 20px;
+}
+
+textarea {
     width: 90%;
+    height: 100%;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    resize: none;
+    font-size: 1.2em;
+    font-family: Pretendard;
+  }
+
+.markdownx{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+}
+
+button:nth-of-type(1) {
+    margin-top: 20px;
+    border: none;
+    border-radius: 20px;
+    width: 90%;
+    height: 40px;
+    font-family: Pretendard !important;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    background-color: #FF9E1A;
+}
+
+.btnbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

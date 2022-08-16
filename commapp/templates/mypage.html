@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  {% load static %} 
+  <link rel="stylesheet" href={% static './css/mypage.css'%}>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
-<body>
   <!-- <script>
     function readme(name,repo){
       fetch("https://api.github.com/repos/"+name+"/"+repo+"/readme")
@@ -22,35 +20,37 @@
     readme(name,repo);
     // document.write("gg")
   </script> -->
-    {% if user.is_authenticated %}
-    {{ user.nickname }}님 안녕하세요
-    <button type="submit"><a href="{% url 'logout' %}">로그아웃</a></button>
-    <div>
-      {% if not user.git %}
-      <form method="post" action="{% url 'Co' %}">{% csrf_token %} 
-        <label for="gitName">gitName</label>    
-        <input type="text" name="gitName" placeholder="깃 이름을 입력해주세요">
-        <input type="submit">
-      </form>
-      {% else %}
-      {{ user.nickname }}님의 이번주 커밋수는
-        {% for c in commit %}
-          {% if c.gitName == user.git %}
-            {{ c.commit }}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
+  <body>
+    {% include 'nav.html' %}
+    <div class="outsection">
+      {% if user.is_authenticated %}
+      <div class="UserName">
+        {{ user.nickname }}님의 프로필
       </div>
-      <a href="readme(name,repo)"
-  {% else %}
-    방랑자님 안녕하세요
-    <button type="submit"><a href="{% url 'login' %}">로그인</a></button>
-  {% endif %}  
-  
-  
+      <div>
+        {% if not user.git %}
+          <form method="post" action="{% url 'Co' %}">{% csrf_token %} 
+            <label for="gitName">gitName</label>    
+            <input type="text" name="gitName" placeholder="깃 이름을 입력해주세요">
+            <input type="submit">
+          </form>
+        {% else %}
+          {{ user.nickname }}님의 이번주 커밋수는
+            {% for c in commit %}
+              {% if c.gitName == user.git %}
+                {{ c.commit }}
+              {% endif %}
+            {% endfor %}
+        {% endif %}
+        </div>
+        <a href="readme(name,repo)"
+    {% else %}
+      방랑자님 안녕하세요
+      <button type="submit"><a href="{% url 'login' %}">로그인</a></button>
+    {% endif %} 
+    
+    <button type="submit"><a href="{% url 'logout' %}">로그아웃</a></button> 
+    </div>
 </body>
-<script>
-
-</script>
 
 </html>

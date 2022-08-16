@@ -8,15 +8,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
              "padding" : "2px"
 
-            , "width" : "600px"
+            , "width" : "100%"
 
             , "height" : "30px"
 
         }
 
-        , inc : 5                              // 속도
+        , inc : 2                           // 속도
 
-        , mouse : "cursor driven"       // 마우스 사용여부
+        , mouse : false       // 마우스 사용여부 "cursor driven"
 
         , moveatleast : 2                  // 이동속도
 
@@ -45,9 +45,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         }
 
-        , inc : 5                              // 속도
+        , inc : 2                             // 속도
 
-        , mouse : "cursor driven"       // 마우스 사용여부
+        , mouse : false       // 마우스 사용여부
 
         , moveatleast : 2                  // 이동속도
 
@@ -76,9 +76,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         }
 
-        , inc : 5                              // 속도
+        , inc : 2                             // 속도
 
-        , mouse : "cursor driven"       // 마우스 사용여부
+        , mouse : false        // 마우스 사용여부
 
         , moveatleast : 2                  // 이동속도
 
@@ -107,9 +107,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         }
 
-        , inc : 5                              // 속도
+        , inc : 2                            // 속도
 
-        , mouse : "cursor driven"       // 마우스 사용여부
+        , mouse : false        // 마우스 사용여부
 
         , moveatleast : 2                  // 이동속도
 
@@ -138,9 +138,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         }
 
-        , inc : 5                              // 속도
+        , inc : 2                             // 속도
 
-        , mouse : "cursor driven"       // 마우스 사용여부
+        , mouse : false        // 마우스 사용여부
 
         , moveatleast : 2                  // 이동속도
 
@@ -169,9 +169,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         }
 
-        , inc : 5                              // 속도
+        , inc : 2                              // 속도
 
-        , mouse : "cursor driven"       // 마우스 사용여부
+        , mouse : false        // 마우스 사용여부
 
         , moveatleast : 2                  // 이동속도
 

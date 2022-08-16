@@ -42,16 +42,29 @@
               <span>RANKING</span>
             </a>
           </li>
-          <li>
+          {% comment %} <li>
             <a href="{% url 'mypage' %}">
               <span>MYPAGE</span>
             </a>
-          </li>
+          </li> {% endcomment %}
           {% comment %} <li>
             <a href="#">
               <span>LOGIN</span>
             </a>
           </li> {% endcomment %}
+          {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'mypage' %}">
+                <span>MYPAGE</span>
+              </a>
+            </li>
+          {% else %}
+            <li>
+              <a href="#">
+                <span>LOGIN</span>
+              </a>
+            </li>
+          {% endif %}
         </ul>
       </div>
     </div>

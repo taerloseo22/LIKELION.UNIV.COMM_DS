@@ -41,7 +41,7 @@
       });
     </script>
     <div class="MidSection">
-      <div data-aos="fade-up" class="LinkComponent1">
+      <div class="LinkComponent1">
         <div class="now">현재 진행중인 이벤트</div>
         <a href="#">
           <div class="link">
@@ -53,9 +53,13 @@
           </div>
         </a>
       </div>
-      <div data-aos="fade-up" class="LinkComponent2">
-        <div class="username1">님.</div>
-        <div class="username2">많은 사자들의 작품 보고 가세요!</div>
+      <div class="LinkComponent2">
+        {% if user.is_authenticated %}
+          <div class="username1">{{ user.nickname }}님.</div>
+          <div class="username2">많은 사자들의 작품 보고 가세요!</div>
+        {% else %}
+          <div class="username2">멋쟁이 사자들의 작품 보고 가세요!</div>
+        {% endif %}
         <a href="{% url 'board' %}">
           <div class="link">
             <img class="representativeImg" src={% static './img/collection.png' %}/>

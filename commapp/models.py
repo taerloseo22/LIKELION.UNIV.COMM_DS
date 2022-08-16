@@ -8,7 +8,7 @@ from markdownx.utils import markdown
 # Create your models here.
 # User = settings.AUTH_USER_MODEL
 class comm(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField('',max_length=50)
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     # title = models.CharField('',max_length=50)
     # author = models.CharField(max_length=50)
@@ -20,9 +20,9 @@ class comm(models.Model):
         ('talk','TALK'),
         ('issue','ISSUE'),
         ('project','PROJECT'),
-        ('connent','CONNENT'),
+        ('connect','CONNECT'),
     )
-    tag = models.CharField(max_length=7, choices=OPTION)
+    tag = models.CharField('카테고리',max_length=7, choices=OPTION)
 
     def __str__(self):
         return self.title

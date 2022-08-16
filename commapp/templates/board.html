@@ -94,8 +94,8 @@
           {% endif %} {% endfor %}
         </div>
         
-        <div id="connent" style="display: none">
-          {% for c in comm %} {% if c.tag == "connent" %}
+        <div id="connect" style="display: none">
+          {% for c in comm %} {% if c.tag == "connect" %}
           <a href="{% url 'board_detail' pk=c.pk %}">
             <div class="LinkComponent1">
               <div class="link">
