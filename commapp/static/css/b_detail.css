@@ -127,6 +127,7 @@ body{
 .commentsection{
     padding-left: 1rem;
     padding-right: 1rem;
+    margin-bottom: 30px;
 }
 
 .commentsection label{
@@ -190,3 +191,52 @@ h4{
     text-decoration: none;
     color: #797979;
 }
+
+.comusername{
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 1rem;
+}
+.comdate{
+    color: #989898;
+    font-family: Pretendard;
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.namedate{
+    display: flex;
+    flex-direction: column;
+}
+
+.rede{
+    display: flex;
+    flex-direction: row;
+    font-size: 0.8em;
+}
+
+.userinfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rede a + a {
+    margin-left: 0.5rem;
+}
+
+.resection{
+    display: none;
+}
+
+.sawing{
+    display: contents;
+}
+.commentbox{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+

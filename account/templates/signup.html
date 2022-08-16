@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <html>
   <head>
     {% load static %} 
@@ -8,44 +7,31 @@
     <body>
         {% include 'nav.html' %}
             <div class="outsection">
-                <div class="maintitle">로그인</div>
+                <div class="maintitle">회원가입</div>
                 <form action="{% url 'signup' %}" method="post">
                     {% csrf_token %}
-                    <label for="username">likelion.org id</label>
-                    {{ form.username }}<br>
-                    <label for="password1">password</label>
-                    {{ form.password1 }}<br>
-                    <label for="password2">entry password</label>
-                    {{ form.password2 }}<br>
-                    <label for="nickname">nickname</label>
-                    {{ form.nickname }}<br>
-                    <button type="submit">submit</button>
+                    <div class="email">
+                        <label for="username">이메일</label>
+                        <div class="ebox">
+                            {{ form.username }} 
+                            <span class="likeemail">@ likelion.org</span>
+                        </div>
+                    </div>
+                    <div class="nickname">
+                        <label for="nickname">이름</label>
+                        {{ form.nickname }}
+                    </div>
+                    <div class="password">
+                        <label for="password1">비밀번호</label>
+                        {{ form.password1 }}
+                    </div>
+                    <div class="check">
+                        <label for="password2">비밀번호 확인</label>
+                        {{ form.password2 }}
+                    </div>
+                    <button class="signupbtn" type="submit">회원가입</button>
                 </form>
             </div>
         {% include 'footer.html' %}
     </body>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="{% url 'signup' %}" method="post">
-        {% csrf_token %}
-        <!-- <label for="username">likelion.org id</label>
-        {{ form.username }}<br>
-        <label for="password1">password</label>
-        {{ form.password1 }}<br>
-        <label for="nickname">nickname</label>
-        {{ form.nickname }}<br>
-        <button type="submit">submit</button> -->
-        {{ form.as_p }}
-        <button type="submit">submit</button>
-    </form>
-</body>
->>>>>>> Stashed changes
 </html>

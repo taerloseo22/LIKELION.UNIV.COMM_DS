@@ -1,71 +1,71 @@
 {% load markdown_deux_tags %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  {% load static %} 
-  <link rel="stylesheet" href={% static './css/mypage.css'%}>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-</head>
+<html>
+  <head>
+    {% load static %} 
+    <link rel="stylesheet" href={% static './css/mypage.css'%}>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+  </head>
 
-<body>
-
-    <!-- {% for i in readme %}
-    {{i}} -->
-    <!-- {{i |markdown:"STYLE" }} -->
-  <!-- {% endfor %} -->
-  {{ readme|markdown:"STYLE" }}
-  <a href="https://velog.io/@eheo"><img src="https://img.shields.io/badge/velog-1DBF73?style=flat-square&logo=Vimeo&logoColor=white"/></a> <a href="https://www.instagram.com/eun_coding/"><img src="https://img.shields.io/badge/Instagram-2A0C99?style=flat-square&logo=Instagram&&logoColor=white"/></a>
-  <!-- <script>
-    function readme(name,repo){
-      fetch("https://api.github.com/repos/"+name+"/"+repo+"/readme")
-                .then((response) => response.json())
-                .then((data) =>{
-                    console.log(data) // json 파일
-                    console.log(data.content) //파일 내용 base64로 받아와진다
-                    document.write(decodeURIComponent(atob(data.content))); //utf-8로 디코딩
-                });
-    }
-    var name = "DAASHeo"
-    var repo = "DAASHeo"
-    readme(name,repo);
-    // document.write("gg")
-  </script> -->
-
+  <body>
     {% include 'nav.html' %}
-    <div class="outsection">
-      {% if user.is_authenticated %}
-      <div class="UserName">
-        {{ user.nickname }}님의 프로필
-      </div>
-      <div>
-        {% if not user.git %}
-          <form method="post" action="{% url 'Co' %}">{% csrf_token %} 
-            <label for="gitName">gitName</label>    
-            <input type="text" name="gitName" placeholder="깃 이름을 입력해주세요">
-            <input type="submit">
-          </form>
-        {% else %}
-          {{ user.nickname }}님의 이번주 커밋수는
-            {% for c in commit %}
-              {% if c.gitName == user.git %}
-                {{ c.commit }}
-              {% endif %}
-            {% endfor %}
-        {% endif %}
+      <div class="outsection">
+        {% if user.is_authenticated %}
+        <div class="UserName">
+          {{ user.nickname }}님의 프로필
         </div>
-        <a href="readme(name,repo)"
-        <div class="extrasection">
-          <a href="{% url 'logout' %}" class="logout">
-            <button type="submit">
-              로그아웃
-            </button> 
-          </a>
-        </div>
-        {% else %}
-          방랑자님 안녕하세요
-          <button type="submit"><a href="{% url 'login' %}">로그인</a></button>
-        {% endif %} 
+        <div>
+          {% if not user.git %}
+            <form method="post" action="{% url 'Co' %}">{% csrf_token %} 
+              <label for="gitName">gitName</label>    
+              <input type="text" name="gitName" placeholder="깃 이름을 입력해주세요">
+              <input type="submit">
+            </form>
+          {% else %}
+            {{ user.nickname }}님의 이번주 커밋수는
+              {% for c in commit %}
+                {% if c.gitName == user.git %}
+                  {{ c.commit }}
+                {% endif %}
+              {% endfor %}
+          {% endif %}
+          </div>
+          <div class="readmesection">
+            <a href="readme(name,repo)">
+              <!-- {% for i in readme %}
+                {{i}} -->
+                <!-- {{i |markdown:"STYLE" }} -->
+              <!-- {% endfor %} -->
+              {{ readme|markdown:"STYLE" }}
+              <a href="https://velog.io/@eheo"><img src="https://img.shields.io/badge/velog-1DBF73?style=flat-square&logo=Vimeo&logoColor=white"/></a> <a href="https://www.instagram.com/eun_coding/"><img src="https://img.shields.io/badge/Instagram-2A0C99?style=flat-square&logo=Instagram&&logoColor=white"/></a>
+              <!-- <script>
+                function readme(name,repo){
+                  fetch("https://api.github.com/repos/"+name+"/"+repo+"/readme")
+                            .then((response) => response.json())
+                            .then((data) =>{
+                                console.log(data) // json 파일
+                                console.log(data.content) //파일 내용 base64로 받아와진다
+                                document.write(decodeURIComponent(atob(data.content))); //utf-8로 디코딩
+                            });
+                }
+                var name = "DAASHeo"
+                var repo = "DAASHeo"
+                readme(name,repo);
+                // document.write("gg")
+              </script> -->
+            </a>
+          </div>
+          <div class="extrasection">
+            <a href="{% url 'logout' %}" class="logout">
+              <button type="submit">
+                로그아웃
+              </button> 
+            </a>
+          </div>
+          {% else %}
+            방랑자님 안녕하세요
+            <button type="submit"><a href="{% url 'login' %}">로그인</a></button>
+          {% endif %} 
+          
 
-</body>
-
+  </body>
 </html>
