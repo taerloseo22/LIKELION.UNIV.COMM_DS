@@ -7,6 +7,21 @@
     <title>Document</title>
 </head>
 <body>
+  <!-- <script>
+    function readme(name,repo){
+      fetch("https://api.github.com/repos/"+name+"/"+repo+"/readme")
+                .then((response) => response.json())
+                .then((data) =>{
+                    console.log(data) // json 파일
+                    console.log(data.content) //파일 내용 base64로 받아와진다
+                    document.write(decodeURIComponent(atob(data.content))); //utf-8로 디코딩
+                });
+    }
+    var name = "DAASHeo"
+    var repo = "DAASHeo"
+    readme(name,repo);
+    // document.write("gg")
+  </script> -->
     {% if user.is_authenticated %}
     {{ user.nickname }}님 안녕하세요
     <button type="submit"><a href="{% url 'logout' %}">로그아웃</a></button>
@@ -26,11 +41,16 @@
         {% endfor %}
       {% endif %}
       </div>
+      <a href="readme(name,repo)"
   {% else %}
     방랑자님 안녕하세요
     <button type="submit"><a href="{% url 'login' %}">로그인</a></button>
   {% endif %}  
-    
+  
   
 </body>
+<script>
+
+</script>
+
 </html>

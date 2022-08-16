@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.google',
     'account',
     'bootstrap4',
+    'markdownx',
 ]
 
 MIDDLEWARE = [
@@ -128,7 +129,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'commapp', 'static'),
-    os.path.join(BASE_DIR, 'accounts', 'static'),
+    # os.path.join(BASE_DIR, 'accounts', 'static'),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
