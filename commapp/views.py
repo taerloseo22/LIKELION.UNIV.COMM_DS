@@ -167,7 +167,6 @@ def Co(request):
     # username,repos = requset.GET['username','repos']
     # repos = requset.GET['repos']
     username=request.POST['gitName']  
-
     # CustomUser.git =request.POST['gitName'] 
     url1 = 'https://api.github.com/users/%s/repos?per_page=100' %(username)
     response1 = requests.get(url1).json()

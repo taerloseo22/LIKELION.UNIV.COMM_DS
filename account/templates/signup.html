@@ -9,7 +9,14 @@
 <body>
     <form action="{% url 'signup' %}" method="post">
         {% csrf_token %}
-        {{ form }}
+        <label for="username">likelion.org id</label>
+        {{ form.username }}<br>
+        <label for="password1">password</label>
+        {{ form.password1 }}<br>
+        <label for="password2">entry password</label>
+        {{ form.password2 }}<br>
+        <label for="nickname">nickname</label>
+        {{ form.nickname }}<br>
         <button type="submit">submit</button>
     </form>
 </body>
