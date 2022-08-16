@@ -13,7 +13,7 @@ def login(request):
         user = authenticate(request=request, username=username, password1=password1)
         if user is not None:
             auth.login(request, user)
-        return redirect('board')
+        return redirect('login')
     else:
         form = AuthenticationForm()
         return render(request, 'login.html',{'form':form})

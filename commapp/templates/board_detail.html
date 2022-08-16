@@ -11,7 +11,7 @@
     {% include 'nav.html' %}
     <br><br><br>
     <h1>{{ comm.title }}</h1>
-    {{ comm.user }}
+    {{ comm.user.nickname }}
     {{ comm.date }}<br> 
     {% if comm.img %}
         <img src="{{comm.img.url }}" width="500px">
@@ -29,7 +29,7 @@
         {% for comment in comm.comment_set.iterator %}
         <div id="{{comment.pk}}">
             <!-- {{ comment.author.username }} -->
-            {{ comment.user }}
+            {{ comment.user.nickname }}
             {{ comment.content }}
             {% if comment.created_at != comment.modified_at %}
                 (수정됨){{ comment.modified_at }}
@@ -41,7 +41,7 @@
             <br>
             <!-- comment_update 함수에 댓글 pk전달 -->
         {% for recom in comment.recomment_set.all %}
-            &nbsp;&nbsp;🐾{{ recom.user }}:{{recom.content}} {{ created_at }}
+            &nbsp;&nbsp;🐾{{ recom.user.nickname }}:{{recom.content}} {{ created_at }}
             <a href="{% url 'recomment_delete' rc_pk=recom.pk %}">삭제</a><br>
         {% endfor %}
         <form method="post" action="{% url 'recomment_create' c_pk=comment.pk %}">{%csrf_token%}
