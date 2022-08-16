@@ -7,7 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    {{ name }}
-    {{ repos }}
+    <h4>이번주 작업한 레포는</h4>
+    {% for i in name %}
+        <b>{{ i }}</b><br>
+    {% endfor %}
+    <h4>총 커밋수는 {{ repos }}입니다</h4>
 </body>
 </html>

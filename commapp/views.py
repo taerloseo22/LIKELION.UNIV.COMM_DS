@@ -1,12 +1,14 @@
-from email import header
+from this import d
+from turtle import update
+from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import is_valid_path
+from django.core.exceptions import PermissionDenied
 from .models import comm, Comment,  ReComment, Commit
-from django.views.generic import View
+from django.views.generic import View, CreateView
 from commapp.forms import CommentForm, commForm, ReCommentForm
-import requests 
+import requests
+from account.models import CustomUser
 # Create your views here.
-
 
 def main(request):
     return render(request, 'main.html')
@@ -22,6 +24,7 @@ def board_post(request):
         form  = commForm(request.POST, request.FILES) #form 유효성 확인
         if form.is_valid():
             c = form.save(commit=False) #db에 당장 저장x
+            c.user = request.user
             c.save()
             return redirect('board_detail', pk = c.pk)
     else: #GET요청 웹 브라우저에서 페이지 접속
@@ -29,7 +32,7 @@ def board_post(request):
     return render(request, 'board_post.html', {'form':form})
 
 def board(request):
-    c = comm.objects.all()
+    c = comm.objects.all().order_by('-id')
     return render(request, 'board.html',{'comm':c})
 
 def board_detail(request, pk):
@@ -61,7 +64,7 @@ def comment_create(request, pk):
     if filled_form.is_valid():
         finished_form = filled_form.save(commit=False)
         finished_form.post = get_object_or_404(comm, pk=pk)
-        finished_form.author = request.user
+        finished_form.user = request.user
         finished_form.save()
     return redirect('board_detail', pk)
 
@@ -88,7 +91,7 @@ def recomment_create(request,c_pk):
     if filled_form.is_valid():
         finished_form = filled_form.save(commit=False)
         finished_form.post = get_object_or_404(Comment, pk=c_pk)
-        finished_form.author = request.user
+        finished_form.user = request.user
         finished_form.save()
     return redirect('board_detail', pk=finished_form.post.post.pk)
 
@@ -138,13 +141,13 @@ class GithubUserView(View):
                 else:
                     break
         commit=Commit.objects.all()
-        if commit.filter(author__icontains=username).exists():
+        if commit.filter(gitName__icontains=username).exists():
             # commit.author['username'].update(
             #     commit = count
             # )
-            commit.filter(author=username).update(commit = count)
+            commit.filter(gitName=username).update(commit = count)
         else:
-            commit.author = username
+            commit.gitName = username
             commit.commit = count
         return render(request, 'commit.html',{'name':arr, 'repos':count})
         # return render(requset, 'commit.html',{'name':username, 'repos':arr})
@@ -152,3 +155,60 @@ class GithubUserView(View):
 def commit_rank(request):
     commit = Commit.objects.all().order_by('-commit')
     return render(request, 'commit_rank.html',{'commit':commit})
+
+def mypage(request):
+    commit=Commit.objects.all()
+    # commit.gitName=request.POST['gitName']
+    return render(request, 'mypage.html',{'commit':commit})
+
+
+
+def Co(request):
+    # username,repos = requset.GET['username','repos']
+    # repos = requset.GET['repos']
+    username=request.POST['gitName']  
+    # CustomUser.git =request.POST['gitName'] 
+    url1 = 'https://api.github.com/users/%s/repos?per_page=100' %(username)
+    response1 = requests.get(url1).json()
+    arr = []
+    count=0
+    for i in range(len(response1)-1, 0,-1):
+        push=response1[i]["pushed_at"]
+        push1 = push[0:10]
+        push2 = push1.split('-')
+        push3 = ''.join(push2)
+        if(20220803 <= int(push3)):
+            arr.append(response1[i]["name"])
+    
+    for i in arr:
+        url = 'https://api.github.com/repos/%s/%s/commits?per_page=100' %(username, i)
+        response = requests.get(url).json()
+        for j in range(len(response)):
+            time=response[j]["commit"]["author"]["date"]
+            string1 = time[0:10]
+            string1 = string1.split('-')
+            string = ''.join(string1)
+            if int(string) >= 20220803 :
+                count += 1
+            else:
+                break
+    commit=Commit.objects.all()
+    if commit.filter(gitName__icontains=username).exists():
+        commit.filter(gitName=username).update(commit = count)
+    else:
+        Commit.objects.create(
+            user = request.user,
+            gitName = username,
+            commit = count
+        )
+    CustomUser.objects.filter(username=request.user).update(git=username)
+    #     commit.author['username'].update(
+    #         commit = count
+    #     )
+    #     commit.filter(gitName=username).update(commit = count)
+    #     commit.save()
+    # else:
+    #     c = Commit.objects.create(gitName = username, commit = count)
+    #     c.save()
+    return render(request, 'commit.html',{'name':arr, 'repos':count})
+    # return render(request, 'commit.html',{'commit':c})

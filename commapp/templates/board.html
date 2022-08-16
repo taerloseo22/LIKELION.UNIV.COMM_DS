@@ -21,7 +21,6 @@
           <div class="nav-underline"></div>
         </div>
       </div>
-      {% csrf_token %}
       
       <div class="modal">
         <div class="modal_box">
@@ -38,6 +37,7 @@
         </div>  
       </div>
       <script src={% static './js/modal.js' %}></script>
+
       <div class="postsection">
         <div id="talk" style="display: block">
           {% for c in comm %} {% if c.tag == "talk" %}
@@ -56,7 +56,8 @@
           </a> 
           {% endif %} {% endfor %}
         </div>
-        
+
+      {% csrf_token %}
         <div id="issue" style="display: none">
           {% for c in comm %} {% if c.tag == "issue" %}
           <a href="{% url 'board_detail' pk=c.pk %}">
@@ -112,12 +113,12 @@
         </div>
       </div>
   </div>
+
   <div class="btn_contain">
     <div class="newbtn">
       <a href="{% url 'board_post' %}">+ 글쓰기</a>
     </div>
   </div>
   <script src={% static './js/category.js' %}></script>
-      
+ 
 </body>
-  
