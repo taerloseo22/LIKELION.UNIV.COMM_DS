@@ -22,7 +22,7 @@ body{
     padding-top: 60px;
     padding-left: 1rem;
     padding-right: 1rem;
-    height: 70%;
+    height: 90%;
 }
 
 .maintitle{
@@ -30,4 +30,68 @@ body{
     font-size: 30px;
     font-weight: 800;
     margin: 20px;
+}
+
+.email, .nickname, .password, .check{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 90%;
+}
+
+.ebox{
+    display: flex;
+    flex-direction: row;
+    width: 100%; 
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form label{
+    font-family: Pretendard !important;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.check > input,
+.password > input, .nickname > input
+{
+    width:100%; 
+    margin-bottom: 20px;
+}
+
+input{
+    height: 35px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 6px;
+    border: 1px solid #CCC;
+}
+
+.signupbtn{
+    margin-top: 20px;
+    border: none;
+    border-radius: 6px;
+    width: 90%;
+    height: 40px;
+    font-family: Pretendard !important;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    background-color: #FF9E1A;
+}
+
+.likeemail{
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: 600;
 }

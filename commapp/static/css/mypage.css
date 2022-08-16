@@ -23,6 +23,8 @@ body{
     height: 100%;
     /* overflow-y: scroll;
     overflow-x: hidden; */
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 .UserName{
     font-family: Pretendard !important;
@@ -66,4 +68,8 @@ form{
 .extrasection{
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.readmesection{
+    width: 100%;
 }

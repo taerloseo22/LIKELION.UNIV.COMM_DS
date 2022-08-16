@@ -41,6 +41,7 @@
 
         <div class="commentsection">
             <h4>댓글</h4>
+            {% if user.is_authenticated %}
             <form method="POST" action="{% url 'comment_create' pk=comm.pk %}">
                 {% csrf_token %}
                 <div>
@@ -48,35 +49,58 @@
                     <button type="submit">댓글 작성</button>
                 </div>
             </form>
+            {% else %}
+            <a href="#">
+                <div class="nocomment">로그인이 필요한 기능입니다</div>
+            </a>
+            {% endif %}
+            
             {% if comm.comment_set.exists %}
                 {% for comment in comm.comment_set.iterator %}
                 <div id="{{comment.pk}}">
                     <!-- {{ comment.author.username }} -->
-                    {{ comment.user.nickname }}
-                    {{ comment.content }}
-                    {% if comment.created_at != comment.modified_at %}
-                        (수정됨){{ comment.modified_at }}
-                    {% else %}
-                        {{ comment.created_at }} 
-                    {% endif %}
-                    <a href="{% url 'comment_update' pk=comment.pk %}">수정</a>
-                    <a href="{% url 'comment_delete' pk=comment.pk %}">삭제</a>
-                    <br>
+                    <div class="commentbox">
+                        <div class="userinfo">
+                            <div class="namedate">
+                                <div class="comusername">
+                                    {{ comment.user.nickname }}
+                                </div>
+                                <div class="comdate">
+                                {% if comment.created_at != comment.modified_at %}
+                                    (수정됨){{ comment.modified_at }}
+                                {% else %}
+                                    {{ comment.created_at }} 
+                                {% endif %}
+                                </div>
+                            </div>
+                            <div class="rede">
+                                <a href="{% url 'comment_update' pk=comment.pk %}">수정</a>
+                                <a href="{% url 'comment_delete' pk=comment.pk %}">삭제</a>
+                            </div>
+                        </div>
+                        {{ comment.content }}
+                    </div>
                     <!-- comment_update 함수에 댓글 pk전달 -->
-                {% for recom in comment.recomment_set.all %}
-                    &nbsp;&nbsp;🐾{{ recom.user.nickname }}:{{recom.content}} {{ created_at }}
-                    <a href="{% url 'recomment_delete' rc_pk=recom.pk %}">삭제</a><br>
-                {% endfor %}
-                <form method="post" action="{% url 'recomment_create' c_pk=comment.pk %}">{%csrf_token%}
-                    {{ recomment_form }}
-                <input type="hidden" name="comment" value={{recomment.id}}>
-                <input type="submit">
-                </form>
+                    <div class="recomsection">
+                        {% for recom in comment.recomment_set.all %}
+                            &nbsp;&nbsp;🐾{{ recom.user.nickname }}:{{recom.content}} {{ created_at }}
+                            <a href="{% url 'recomment_delete' rc_pk=recom.pk %}">삭제</a><br>
+                        {% endfor %}
+                        <button class="rebtn" onclick="recomment()">+ 답글 달기</button>
+                        <div class="resection">
+                            <form method="post" action="{% url 'recomment_create' c_pk=comment.pk %}">
+                                {%csrf_token%}
+                                {{ recomment_form }}
+                            <input type="hidden" name="comment" value={{recomment.id}}>
+                            <input type="submit">
+                            </form>
+                        </div>
+                    </div>
                 {% endfor %}
             {% endif %}
-
             </div>
         </div>
         {% include 'footer.html' %}
+        <script src="/static/js/recomment.js"></script>
 </body>
 </html>

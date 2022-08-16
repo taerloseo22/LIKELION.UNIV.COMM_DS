@@ -12,8 +12,11 @@
 }
 
 @media (min-width:768px){
+    .topsection{
+        width: 412px !important;
+    }
     body{
-        width: 412px;
+      width: 412px;
     }
 }
 

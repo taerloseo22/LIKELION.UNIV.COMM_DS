@@ -4,6 +4,12 @@
   .text{
     font-size: 1.2em !important;
   }
+  
+}
+@media (min-width:768px){
+  .contain{
+    width: 412px !important;
+  }
 }
 
 body{
