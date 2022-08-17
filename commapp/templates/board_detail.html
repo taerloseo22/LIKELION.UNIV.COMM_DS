@@ -24,7 +24,8 @@
             <a href="{{comm.file.url }}" download>
                 <div class="downbox">
                     <span class="chumboo">첨부파일</span>
-                    <span class="filename">vkdlf.jpeg</span>
+                    <!-- <span class="filename">vkdlf.jpeg</span> -->
+                    <span class="filename">{{ comm.get_file_name }}</span>
                     <img class="downicon" src={% static './img/download.png' %} />
                 </div>
             </a>
@@ -50,7 +51,7 @@
                 </div>
             </form>
             {% else %}
-            <a href="#">
+            <a href="{% url 'login' %}">
                 <div class="nocomment">로그인이 필요한 기능입니다</div>
             </a>
             {% endif %}

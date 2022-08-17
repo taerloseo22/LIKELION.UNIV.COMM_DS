@@ -28,7 +28,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{% url 'board' %}">
               <span>NOTICE</span>
             </a>
           </li>
@@ -38,7 +38,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{% url 'commit_rank' %}">
               <span>RANKING</span>
             </a>
           </li>
@@ -48,7 +48,7 @@
             </a>
           </li> {% endcomment %}
           {% comment %} <li>
-            <a href="#">
+            <a href="{% url 'login' %}">
               <span>LOGIN</span>
             </a>
           </li> {% endcomment %}
@@ -60,7 +60,7 @@
             </li>
           {% else %}
             <li>
-              <a href="#">
+              <a href="{% url 'login' %}">
                 <span>LOGIN</span>
               </a>
             </li>
