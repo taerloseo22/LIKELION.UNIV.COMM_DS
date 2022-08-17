@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from commprj import settings
 from account.models import CustomUser
@@ -29,6 +30,9 @@ class comm(models.Model):
 
     def get_content_markdown(self):
         return markdown(self.content)
+
+    def get_file_name(self):
+        return os.path.basename(self.file.name)
 
 class Comment(models.Model):
     post = models.ForeignKey(comm, on_delete=models.CASCADE)
