@@ -128,11 +128,16 @@ body{
     padding: 1rem;
   }
   .commit_detail{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #0E1013;
     display: -webkit-box;
     -webkit-line-clamp: 3;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      color: #0E1013;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .commit{
     font-family:Pretendard;
