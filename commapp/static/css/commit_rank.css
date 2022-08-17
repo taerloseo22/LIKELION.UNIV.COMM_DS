@@ -27,10 +27,23 @@ body{
     color: white;
     font-family: 'Lexend Zetta', sans-serif;
     font-weight: 900;
+    margin-bottom: 30px;
+    position: absolute;
+    top: 500px;
 }
 
 .myrank{
-    padding-top: 60px;
+    top:570px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 200;
+    
+}
+.myrankout{
+    padding-top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,7 +52,7 @@ body{
 
 .rankbox{
     position: relative;
-    z-index: 100;
+    z-index: 300;
     
 }
 .mybox{
@@ -71,3 +84,31 @@ body{
     border-right: .05em solid black;
     animation: cursor 0.5s ease infinite;
   }
+
+  .backline{
+    position: relative;
+    z-index: 0;
+  }
+
+  
+  .backlion{
+    position: absolute;
+    top: 100px;
+    width: 100%;
+  }
+
+  .top10{
+    color: white;
+    position: absolute;
+    top: 900px;
+  }
+
+  
+.ranktitle{
+    color: white;
+    font-family: 'Lexend Zetta', sans-serif;
+    font-weight: 900;
+    margin-bottom: 30px;
+    position: absolute;
+    top: 800px;
+}

@@ -3,22 +3,33 @@
     <link rel="stylesheet" href={% static './css/commit_rank.css' %}>
     <script src={% static './js/typing.js' %}></script>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 </head>
   
   <body>
+    <script>
+        AOS.init();
+      </script>
     {% include 'nav.html' %}
-    <div class="myrank">
+    <div class="myrankout">
+        <img class="backline" src={% static './img/backgroundline.png' %}/>
+        <img class="backlion" src={% static './img/rankbacklion.png' %}/>
         <span class="mytitle">MY COMMIT</span>
-        <img class="rankbox" src={% static './img/rankbox.png' %}/>
-        <div class="mybox">
-        {% for c in commit %}
-            <span class="myname"><span class="username">{{ c.user.nickname }}</span>님의 이번주 커밋</span>
-            {% comment %} {{ c.user }} {% endcomment %}
-            <span class="mycommit">{{ c.commit }}</span>
-            <span class="mygitname">{{ c.gitName }}</span>
-        {% endfor %}
+        <div class="myrank">
+            <img class="rankbox" src={% static './img/rankbox.png' %}/>
+            <div class="mybox">
+            {% for c in commit %}
+                <span class="myname"><span class="username">{{ c.user.nickname }}</span>님의 이번주 커밋</span>
+                {% comment %} {{ c.user }} {% endcomment %}
+                <span class="mycommit">{{ c.commit }}</span>
+                <span class="mygitname">{{ c.gitName }}</span>
+            {% endfor %}
+            </div>
         </div>
+        <span class="ranktitle">RANKING TOP 10</span>
     </div>
+    
     <div class="top10">
         {% for c in commit %}
             {{ c.user.nickname }}
