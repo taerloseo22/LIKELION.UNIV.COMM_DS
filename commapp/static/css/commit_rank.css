@@ -1,0 +1,73 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@100;200&display=swap');
+
+@media (max-width:257px){
+    body{
+        display: none;
+    }
+}
+
+@media (max-width: 388px){
+  /* 480보다 클경우 - 모바일 */
+}
+
+@media (min-width:768px){
+    body{
+        width: 412px;
+    }
+}
+
+body{
+    margin: 0 !important;
+    background-color: black;
+    font-family: Pretendard !important;
+}
+
+.mytitle{
+    color: white;
+    font-family: 'Lexend Zetta', sans-serif;
+    font-weight: 900;
+}
+
+.myrank{
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rankbox{
+    position: relative;
+    z-index: 100;
+    
+}
+.mybox{
+    z-index: 500;
+    color: white;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.username{
+    font-family: Pretendard !important;
+    color: #FF9E1A;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+@keyframes cursor{
+    50%{ border-color: transparent; }
+  }
+   
+.mycommit{
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 32px;
+    height: 32px;
+    border-right: .05em solid black;
+    animation: cursor 0.5s ease infinite;
+  }
