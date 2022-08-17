@@ -154,9 +154,9 @@ form:nth-of-type(1) div button{
     align-self: flex-end;
     width: 30%;
     border: none;
-    background-color: #FF9E1A;
-    padding : 2px 1em;
-    color: white;
+    background-color: black;
+    padding: 2px 1em;
+    color: #FF9E1A;
     border-radius: 3px;
     height: 2rem;
     font-size: 1rem;
@@ -240,3 +240,85 @@ h4{
     margin-bottom: 10px;
 }
 
+.recomsection button{
+    display: flex;
+    flex-direction: row;
+    background:none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.writer{
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.rebox{
+    padding: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    background-color: rgba(0, 0, 0, 0.016);
+    border-radius: 4px;
+    margin-top: 1.3125rem;
+}
+
+.rebox form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px;
+}
+
+.submitbtn{
+    align-self: flex-end;
+    width: 30%;
+    border: none;
+    background-color: black;
+    padding: 2px 1em;
+    color: #FF9E1A;
+    border-radius: 3px;
+    height: 2rem;
+    font-size: 1rem;
+    font-family: Pretendard;
+    font-weight: bold;
+}
+
+.rebox form input:nth-of-type(2){
+    align-self: center;
+    margin-bottom: 10px;
+    width: 100%;
+    resize: none;
+    font-size: 1em;
+    height: 70px;
+    font-family: Pretendard;
+    padding: 1rem 1rem 1.5rem;
+    border: 1px solid #F1F3F5;
+}
+
+.recomexistbox{
+    padding: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    background-color: rgba(0, 0, 0, 0.016);
+    border-radius: 4px;
+    margin-top: 1.3125rem;
+}
+
+.recomuser{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+.reoutbox{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.recomname{
+    font-size: 1rem;
+    font-family: Pretendard;
+    font-weight: bold;
+}
+
+.deletebtn{
+    font-size: 0.8em;
+}

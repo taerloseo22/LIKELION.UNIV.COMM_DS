@@ -82,18 +82,60 @@
                     </div>
                     <!-- comment_update 함수에 댓글 pk전달 -->
                     <div class="recomsection">
-                        {% for recom in comment.recomment_set.all %}
-                            &nbsp;&nbsp;🐾{{ recom.user.nickname }}:{{recom.content}} {{ created_at }}
-                            <a href="{% url 'recomment_delete' rc_pk=recom.pk %}">삭제</a><br>
-                        {% endfor %}
-                        <button class="rebtn" onclick="recomment()">+ 답글 달기</button>
+                        <div class="recomexistbox">
+                            {% for recom in comment.recomment_set.all %}
+                                <div class="reoutbox">
+                                    <div class="recomuser">
+                                        <span class="recomname">🐾{{ recom.user.nickname }}</span>
+                                        <a href="{% url 'recomment_delete' rc_pk=recom.pk %}" class="deletebtn">삭제</a>
+                                    </div>
+                                    <span class="recomcontent">{{recom.content}}</span> {{ created_at }}
+                                </div>
+                            {% endfor %}
+                            <button class="rebtn" onclick="recomment()">
+                                <img src={% static './img/down.png' %} /> 
+                                <span class="btntext1">
+                                    답글 달기
+                                </span>
+                            </button>
+                            <div class="resection">
+                                <button class="rebtn" onclick="recomment()">
+                                    <img src={% static './img/up.png' %} />
+                                    <span class="btntext1">
+                                        숨기기
+                                    </span>
+                                </button>
+                                <div class="rebox">
+                                    <form method="post" action="{% url 'recomment_create' c_pk=comment.pk %}">
+                                        {%csrf_token%}
+                                        {{ recomment_form }}
+                                    <input type="hidden" name="comment" value={{recomment.id}}>
+                                    <input type="submit" value="댓글 등록" class="submitbtn">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="rebtn" onclick="recomment()">
+                            <img src={% static './img/down.png' %} /> 
+                            <span class="btntext1">
+                                답글 달기
+                            </span>
+                        </button>
                         <div class="resection">
-                            <form method="post" action="{% url 'recomment_create' c_pk=comment.pk %}">
-                                {%csrf_token%}
-                                {{ recomment_form }}
-                            <input type="hidden" name="comment" value={{recomment.id}}>
-                            <input type="submit">
-                            </form>
+                            <button class="rebtn" onclick="recomment()">
+                                <img src={% static './img/up.png' %} />
+                                <span class="btntext1">
+                                    숨기기
+                                </span>
+                            </button>
+                            <div class="rebox">
+                                <form method="post" action="{% url 'recomment_create' c_pk=comment.pk %}">
+                                    {%csrf_token%}
+                                    {{ recomment_form }}
+                                <input type="hidden" name="comment" value={{recomment.id}}>
+                                <input type="submit" value="댓글 등록" class="submitbtn">
+                                </form>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
