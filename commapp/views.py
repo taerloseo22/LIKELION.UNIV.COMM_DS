@@ -8,6 +8,7 @@ import requests
 from account.models import CustomUser
 import base64
 from urllib import parse
+import re
 # Create your views here.
 
 def main(request):
@@ -157,24 +158,44 @@ def commit_rank(request):
     return render(request, 'commit_rank.html',{'commit':commit})
 
 def mypage(request):
-    name = "DAASHeo"
-    repo = "DAASHeo"
+    # n=request.user
+    # m=str(request.user)
+    n=CustomUser.objects.get(username=request.user.username)
+    name1=n.git
+    # name1 = n.git
+    # x = "namseohyeon"
+    # repo = "DAASHeo
+    # x = "namseohyeon"
+    # name = "DAASHeo"
+    # repo = "DAASHeo"
     commit=Commit.objects.all()
     # # # commit.gitName=request.POST['gitName']
-    url = 'https://api.github.com/repos/%s/%s/readme' %(name,repo)
+    url = 'https://api.github.com/repos/%s/%s/readme' %(name1,name1)
     response = requests.get(url).json()
     readme=response.get('content')
+    if readme:
     # # read=readme.decode("UTF-8")
-    r=base64.b64decode(readme)
-    read=r.decode("UTF-8")
-    x=read.replace('<h1>','#').replace('<h2>','##').replace('<h3>','###').replace('<h4>','####').replace('<h5>','#####').replace('<h6>','######').replace('<p>','').replace('</h1>','').replace('</h2>','').replace('</h3>','').replace('</h4>','').replace('</h5>','').replace('</h6>','').replace('</p>','').replace('<br>','').replace('<br/>','').replace('<strong>','**').replace('</strong>','**')
-    # for i in x:
-    #     if x.find('<!--'):
-    #     z1=x.find('<!--')
-    #     a=x[:z1]
-    #     z2=x.find('-->')
-    #     b=x[z2+3:]
-    #     c=a+b
+        r=base64.b64decode(readme)
+        read=r.decode("UTF-8")
+        x=read.replace('<div align="center">','').replace('</div>','').replace('<h1>','#').replace('<h2>','##').replace('<h3>','###').replace('<h4>','####').replace('<h5>','#####').replace('<h6>','######').replace('<p>','').replace('</h1>','').replace('</h2>','').replace('</h3>','').replace('</h4>','').replace('</h5>','').replace('</h6>','').replace('</p>','').replace('<br>','').replace('<br/>','').replace('<strong>','**').replace('</strong>','**').replace('<img src="','![image](').replace('/>',')').replace('<a href="','[''](').replace('">',')').replace('</a>','')
+    else:
+        x = "git readme가 없습니다"
+    #.replace('<a href="','(').replace('">',')')
+    #.replace('<img src="','![image](').replace('/>',')').replace('<img src="','![image](')
+    #.replace('<a href="','[](').replace('>',')')
+    #.replace('>',')').replace('<a href="','[](')
+    # .replace('">',')').replace('<img src="','![image](').replace('/>',')')
+    # q=[m.start() for m in re.finditer('<', x)]
+    # for i in range(len(q)):
+    # while True:
+    # #     if x.find("<") != -1:
+    # i3=x3.find("<a>")
+    # x4=x3[:i3]
+    # i4=x3.find("</a>")
+    # x5=x[i4:]
+    # x6=x4+x5
+        # else:
+        #     break
     #readme=parse.urlencode(response, encoding='UTF-8', doseq=True)
                 # .then((response) => response.json())
                 # .then((data) =>{
