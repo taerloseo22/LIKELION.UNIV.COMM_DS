@@ -8,13 +8,17 @@
     {% include 'nav.html' %}
     <div class="outsection">
         <div class="box">
-            <h4>이번주 작업한 레포는</h4>
+            <span class="ment1">이번주 작업한 레포는</span>
             {% for i in name %}
-                <b>{{ i }}</b><br>
+            <span class="count1">{{ i }}</span>
             {% endfor %}
-            <h4>총 커밋수는 {{ repos }}입니다</h4>
+            <span class="ment2">총 커밋수는 <span class="count2">{{ repos }}</span>입니다</span>
         </div>
-        <a href="{% url 'commit_rank' %}">다른 사자들의 랭킹 보러가기 -></a>
+        <a href="{% url 'commit_rank' %}">
+            <div class="gobtn">
+                다른 사자들의 랭킹 보러가기
+            </div>
+        </a>
     </div>
     
     {% include 'footer.html' %}
