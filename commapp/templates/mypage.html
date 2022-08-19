@@ -13,6 +13,7 @@
       {% if user.is_authenticated %}
       <div class="UserName">
         {{ user.nickname }}님의 프로필
+        <img src="{{ img }}"/>
       </div>
       <div>
         {% if not user.git %}
