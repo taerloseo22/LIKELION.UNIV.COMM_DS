@@ -23,7 +23,7 @@
                 <span class="myname"><span class="username">{{ c.user.nickname }}</span>님의 이번주 커밋</span>
                 {% comment %} {{ c.user }} {% endcomment %}
                 <span class="mycommit">{{ c.commit }}</span>
-                <span class="mygitname">{{ c.gitName }}</span>
+                <span class="mygitname">@{{ c.gitName }}</span>
             {% endfor %}
             </div>
         </div>
@@ -31,12 +31,14 @@
     </div>
     
     <div class="top10">
-        {% for c in commit %}
-            {{ c.user.nickname }}
-            {{ c.user }}
-            {{ c.commit }}
-            {{ c.gitName }}
-        {% endfor %}
+        <img class="rankbox" src={% static './img/rankbox.png' %}/>
+            <div class="rankingbox">
+                {% for c in commit %}
+                <span class="myname">{{ c.user.nickname }}</span>
+                    <span class="mycommit">{{ c.commit }}</span>
+                    <span class="mygitname">@{{ c.gitName }}</span>
+                {% endfor %}
+            <div>
     </div>
 </body>
 </html>

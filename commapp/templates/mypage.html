@@ -10,12 +10,29 @@
 <body>
     {% include 'nav.html' %}
     <div class="outsection">
-      {% if user.is_authenticated %}
-      <div class="UserName">
-        {{ user.nickname }}님의 프로필
-        <img src="{{ img }}"/>
+      <div class="mypagetitle">
+        마이페이지
       </div>
-      <div>
+      {% if user.is_authenticated %}
+      <div class="userout">
+        <div class="userprofilebox">
+          <div class="firstsection">
+            <img src="{{ img }}" class="profileimg"/>
+            <div class="subsection">
+              <div class="UserName">
+              {{ user.nickname }}
+              </div>
+              {{ user.nickname }}님의 일주일 총 커밋수: 
+              {% for c in commit %}
+                {% if c.gitName == user.git %}
+                  {{ c.commit }}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reamebox">
         {% if not user.git %}
           <form method="post" action="{% url 'Co' %}">{% csrf_token %} 
             <label for="gitName">gitName</label>    
@@ -23,22 +40,18 @@
             <input type="submit">
           </form>
         {% else %}
-          {{ user.nickname }}님의 일주일 총 커밋수: 
-            {% for c in commit %}
-              {% if c.gitName == user.git %}
-                {{ c.commit }}
-              {% endif %}
-            {% endfor %}
+            <div class="readmesection">
             {{ readme|markdown:"STYLE" }} 
+            </div>
         {% endif %}
         </div>
-        <div class="extrasection">
-          <a href="{% url 'logout' %}" class="logout">
-            <button type="submit">
-              로그아웃
-            </button> 
-          </a>
-        </div>
+          <div class="logutbtn">
+            <a href="{% url 'logout' %}" class="logout">
+              <button type="submit">
+                로그아웃
+              </button> 
+            </a>
+          </div>
           <!-- {{ user }}  -->
     {% else %}
         방랑자님 안녕하세요
