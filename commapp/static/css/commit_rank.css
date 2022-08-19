@@ -1,6 +1,13 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@100;200&display=swap');
 
+@font-face {
+    font-family: 'DungGeunMo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @media (max-width:257px){
     body{
         display: none;
@@ -25,21 +32,21 @@ body{
 
 .mytitle{
     color: white;
-    font-family: 'Lexend Zetta', sans-serif;
+    font-family: 'DungGeunMo';
     font-weight: 900;
     margin-bottom: 30px;
-    position: absolute;
-    top: 500px;
+    font-size: 40px;
 }
 
+
+
 .myrank{
-    top:570px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
     z-index: 200;
+    font-family: 'DungGeunMo';
     
 }
 .myrankout{
@@ -53,12 +60,12 @@ body{
 .rankbox{
     position: relative;
     z-index: 300;
-    
+    width: 300px;
 }
 .mybox{
+    position: absolute;
     z-index: 500;
     color: white;
-    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -66,7 +73,7 @@ body{
 }
 
 .username{
-    font-family: Pretendard !important;
+    font-family: 'DungGeunMo';
     color: #FF9E1A;
     font-weight: 700;
     font-size: 1rem;
@@ -83,44 +90,111 @@ body{
     height: 32px;
     border-right: .05em solid black;
     animation: cursor 0.5s ease infinite;
-  }
-
-  .backline{
-    position: relative;
-    z-index: 0;
-  }
+}
 
   
   .backlion{
-    position: absolute;
-    top: 100px;
     width: 100%;
   }
 
   .top10{
     color: white;
-    position: absolute;
-    top: 850px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    font-family: 'DungGeunMo';
+    width: 80%;
   }
 
   
 .ranktitle{
     color: white;
-    font-family: 'Lexend Zetta', sans-serif;
+    /* font-family: 'Lexend Zetta', sans-serif; */
+    font-family: 'DungGeunMo';
     font-weight: 900;
     margin-bottom: 30px;
-    position: absolute;
-    top: 800px;
+    margin-top: 30px;
+    font-size: 40px;
 }
 
 .rankingbox{
-    position: absolute;
-    z-index: 500;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    /* border: 1px solid #FF9E1A; */
+    background-size: cover;
+    width: 100%;
+    height: 121px;
+    background-image: url("../img/rankbox.png");
+}
+.topten{
+    color: #FF9E1A;
+    font-weight: bolder;
+    
+}
+
+.rankingbox .mycommit{
+    font-size: 35px;
+    margin-bottom: 5px;
+}
+
+.rankingbox .mygitname{
+    font-size: 20px;
+}
+
+.rankingbox .myname{
+    font-size: 27px;
+    margin-bottom: 5px;
+    color: #FF9E1A;
+    margin-top: 5px;
+}
+
+.design{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    border: 3px dashed white;
+    margin-bottom: 25px;
+    padding: 1rem;
+
+}
+
+.subtitle2{
+    color: #FF9E1A;
+    font-size: 37px;
+}
+
+
+.backlion1{
+    width: 30%;
+    align-self: flex-end;
+}
+
+.backlion2{
+    width: 40%;
+    align-self: center;
+    width: 100%;
+}
+
+
+.maintitle{
+    display: flex;
+    flex-direction: column;
+    font-family: 'DungGeunMo';
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.subtitle1{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.subtitle3{
+    font-size: 20px;
 }

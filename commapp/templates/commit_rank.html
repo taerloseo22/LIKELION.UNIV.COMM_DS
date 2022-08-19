@@ -13,32 +13,43 @@
       </script>
     {% include 'nav.html' %}
     <div class="myrankout">
-        <img class="backline" src={% static './img/backgroundline.png' %}/>
-        <img class="backlion" src={% static './img/rankbacklion.png' %}/>
+        {% comment %} <img class="backlion" src={% static './img/rankbacklion.png' %}/> {% endcomment %}
+        <div class="design">
+            <img class="backlion1" src={% static './img/lion1.png' %}/>
+            <div class="maintitle">
+                <span class="subtitle1">멋쟁이사자처럼</span>
+                <span class="subtitle2">1일 1커밋 대항전</span><br>
+                <span class="subtitle3">> 시작하기</span>
+            </div>
+            <img class="backlion2" src={% static './img/liongroup.png' %}/>
+        </div>
         <span class="mytitle">MY COMMIT</span>
         <div class="myrank">
             <img class="rankbox" src={% static './img/rankbox.png' %}/>
             <div class="mybox">
             {% for c in commit %}
-                <span class="myname"><span class="username">{{ c.user.nickname }}</span>님의 이번주 커밋</span>
+                {% if c.gitName == user.git %}
+                <span class="myname"}>
+                <span class="username">{{ c.user.nickname }}</span>님의 이번주 커밋</span>
                 {% comment %} {{ c.user }} {% endcomment %}
                 <span class="mycommit">{{ c.commit }}</span>
                 <span class="mygitname">@{{ c.gitName }}</span>
+                {% endif %}
             {% endfor %}
             </div>
         </div>
-        <span class="ranktitle">RANKING TOP 10</span>
-    </div>
-    
-    <div class="top10">
-        <img class="rankbox" src={% static './img/rankbox.png' %}/>
-            <div class="rankingbox">
-                {% for c in commit %}
-                <span class="myname">{{ c.user.nickname }}</span>
+        <span class="ranktitle">RANKING <span class="topten">TOP 10</span></span>
+        <div class="top10">
+            {% for c in commit %}
+                <div class="rankingbox">
+                    <span class="myname">{{ c.user.nickname }}</span>
                     <span class="mycommit">{{ c.commit }}</span>
                     <span class="mygitname">@{{ c.gitName }}</span>
-                {% endfor %}
-            <div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+    
+    
 </body>
 </html>

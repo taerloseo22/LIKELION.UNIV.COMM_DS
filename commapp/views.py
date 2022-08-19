@@ -180,8 +180,8 @@ def mypage(request):
         x=read.replace('<div align="center">','').replace('</div>','').replace('<h1>','#').replace('<h2>','##').replace('<h3>','###').replace('<h4>','####').replace('<h5>','#####').replace('<h6>','######').replace('<p>','').replace('</h1>','').replace('</h2>','').replace('</h3>','').replace('</h4>','').replace('</h5>','').replace('</h6>','').replace('</p>','').replace('<br>','').replace('<br/>','').replace('<strong>','**').replace('</strong>','**').replace('<img src="','![image](').replace('/>',')').replace('<a href="','[''](').replace('">',')').replace('</a>','')
     else:
         x = "git readme가 없습니다"
-    # p_url = 'https://api.github.com/users/%s' %(name1)
-    # p_response = requests.get(p_url).json()
+    p_url = 'https://api.github.com/users/%s' %(name1)
+    p_response = requests.get(p_url).json()
     #.replace('<a href="','(').replace('">',')')
     #.replace('<img src="','![image](').replace('/>',')').replace('<img src="','![image](')
     #.replace('<a href="','[](').replace('>',')')
@@ -205,8 +205,8 @@ def mypage(request):
                 #     console.log(data.content) //파일 내용 base64로 받아와진다
                 #     document.write(decodeURIComponent(atob(data.content))); //utf-8로 디코딩
                 # });
-    # return render(request, 'mypage.html',{'commit':commit,'readme':x,'img':p_response['avatar_url']})
-    return render(request, 'mypage.html',{'commit':commit,'readme':x})
+    return render(request, 'mypage.html',{'commit':commit,'readme':x,'img':p_response['avatar_url']})
+    #return render(request, 'mypage.html',{'commit':commit,'readme':x})
 
 
 
