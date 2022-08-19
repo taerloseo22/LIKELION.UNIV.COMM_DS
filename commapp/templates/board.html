@@ -1,130 +1,130 @@
 <head>
-    {% load static %}
-    <link rel="stylesheet" href={% static './css/board.css' %}>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+  {% load static %}
+  <link rel="stylesheet" href={% static './css/board.css' %}>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
-    {% include 'nav.html' %}
-    <div class="outsection">
-      <div class="topsection">
-        <div class="section1">
-            <div class="maintitle">커뮤니티</div>
-            <button class="searchicon">
-                <img class="icon" src={% static './img/searchicon.png' %}/>
-            </button>
-        </div>
-        <div class="category">
-          <p id="T" class="tcolor" onclick="option(event)">TALK</p>
-          <p id="I" onclick="option(event)">ISSUE</p>
-          <p id="P" onclick="option(event)">PROJECT</p>
-          <p id="C" onclick="option(event)">CONNECT</p>
-        </div>
+  {% include 'nav.html' %}
+  <div class="outsection">
+    <div class="topsection">
+      <div class="section1">
+          <div class="maintitle">커뮤니티</div>
+          <button class="searchicon">
+              <img class="icon" src={% static './img/searchicon.png' %}/>
+          </button>
       </div>
-      
-      <div class="modal">
-        <div class="modal_box">
-          <div class="modal_content">
-            <div class="searchtitle">검색</div>
-            <div class="inputout">
-              <form action="{% url 'search' %}" method="post">
-                {% csrf_token %}
-                <input id="search" name="search" value="{{q}}" placeholder="검색어를 입력하세요."/>
-                <input id="submitbtn" type="submit" value=""/>
-              </form>
+      <div class="category">
+        <p id="T" onclick="option(event)">TALK</p>
+        <p id="I" onclick="option(event)">ISSUE</p>
+        <p id="P" onclick="option(event)">PROJECT</p>
+        <p id="C" onclick="option(event)">CONNECT</p>
+      </div>
+    </div>
+    
+    <div class="modal">
+      <div class="modal_box">
+        <div class="modal_content">
+          <div class="searchtitle">검색</div>
+          <div class="inputout">
+            <form action="{% url 'search' %}" method="post">
+              {% csrf_token %}
+              <input id="search" name="search" value="{{q}}" placeholder="검색어를 입력하세요."/>
+              <input id="submitbtn" type="submit" value=""/>
+            </form>
+          </div>
+        </div>
+      </div>  
+    </div>
+    <script src={% static './js/modal.js' %}></script>
+
+    <div class="postsection">
+      <div id="talk" style="display: block">
+        {% for c in comm %} {% if c.tag == "talk" %}
+        <a href="{% url 'board_detail' pk=c.pk %}">
+          <div class="LinkComponent1">
+            <div class="link">
+              {% if c.img %}
+                  <img src="{{c.img.url }}" class="representativeImg">
+              {% endif %} 
+              <div class="representativeTitle1">
+                <div class="commit">{{ c.title }}</div>
+                <div class="commit_detail">{{ c.text }}</div>
+              </div>
             </div>
           </div>
-        </div>  
+        </a> 
+        {% endif %} {% endfor %}
       </div>
-      <script src={% static './js/modal.js' %}></script>
 
-      <div class="postsection">
-        <div id="talk" style="display: block">
-          {% for c in comm %} {% if c.tag == "talk" %}
-          <a href="{% url 'board_detail' pk=c.pk %}">
-            <div class="LinkComponent1">
-              <div class="link">
-                {% if c.img %}
-                    <img src="{{c.img.url }}" class="representativeImg">
-                {% endif %} 
-                <div class="representativeTitle1">
-                  <div class="commit">{{ c.title }}</div>
-                  <div class="commit_detail">{{ c.text }}</div>
-                </div>
+    {% csrf_token %}
+      <div id="issue" style="display: none">
+        {% for c in comm %} {% if c.tag == "issue" %}
+        <a href="{% url 'board_detail' pk=c.pk %}">
+          <div class="LinkComponent1">
+            <div class="link">
+              {% if c.img %}
+                <img src="{{c.img.url }}" class="representativeImg">
+              {% endif %} 
+              <div class="representativeTitle1">
+                <div class="commit">{{ c.title }}</div>
+                <div class="commit_detail">{{ c.text }}</div>
               </div>
             </div>
-          </a> 
-          {% endif %} {% endfor %}
-        </div>
-
-      {% csrf_token %}
-        <div id="issue" style="display: none">
-          {% for c in comm %} {% if c.tag == "issue" %}
-          <a href="{% url 'board_detail' pk=c.pk %}">
-            <div class="LinkComponent1">
-              <div class="link">
-                {% if c.img %}
-                  <img src="{{c.img.url }}" class="representativeImg">
-                {% endif %} 
-                <div class="representativeTitle1">
-                  <div class="commit">{{ c.title }}</div>
-                  <div class="commit_detail">{{ c.text }}</div>
-                </div>
-              </div>
-            </div>
-          </a>
-          {% endif %} {% endfor %}
-        </div>
-        
-        <div id="project" style="display: none">
-          {% for c in comm %} {% if c.tag == "project" %}
-          <a href="{% url 'board_detail' pk=c.pk %}">
-            <div class="LinkComponent1">
-              <div class="link">
-                {% if c.img %}
-                  <img src="{{c.img.url }}" class="representativeImg">
-                {% endif %} 
-                <div class="representativeTitle1">
-                  <div class="commit">{{ c.title }}</div>
-                  <div class="commit_detail">{{ c.text }}</div>
-                </div>
-              </div>
-            </div>
-          </a>
-          {% endif %} {% endfor %}
-        </div>
-        
-        <div id="connect" style="display: none">
-          {% for c in comm %} {% if c.tag == "connect" %}
-          <a href="{% url 'board_detail' pk=c.pk %}">
-            <div class="LinkComponent1">
-              <div class="link">
-                {% if c.img %}
-                  <img src="{{c.img.url }}" class="representativeImg">
-                {% endif %} 
-                <div class="representativeTitle1">
-                  <div class="commit">{{ c.title }}</div>
-                  <div class="commit_detail">{{ c.text }}</div>
-                </div>
-              </div>
-            </div>
-          </a>
-          {% endif %} {% endfor %}
-        </div>
+          </div>
+        </a>
+        {% endif %} {% endfor %}
       </div>
-  </div>
-  {% if user.is_authenticated %}
-  <div class="btn_contain">
-    <div class="newbtn">
-      <a href="{% url 'board_post' %}">+ 글쓰기</a>
+      
+      <div id="project" style="display: none">
+        {% for c in comm %} {% if c.tag == "project" %}
+        <a href="{% url 'board_detail' pk=c.pk %}">
+          <div class="LinkComponent1">
+            <div class="link">
+              {% if c.img %}
+                <img src="{{c.img.url }}" class="representativeImg">
+              {% endif %} 
+              <div class="representativeTitle1">
+                <div class="commit">{{ c.title }}</div>
+                <div class="commit_detail">{{ c.text }}</div>
+              </div>
+            </div>
+          </div>
+        </a>
+        {% endif %} {% endfor %}
+      </div>
+      
+      <div id="connect" style="display: none">
+        {% for c in comm %} {% if c.tag == "connect" %}
+        <a href="{% url 'board_detail' pk=c.pk %}">
+          <div class="LinkComponent1">
+            <div class="link">
+              {% if c.img %}
+                <img src="{{c.img.url }}" class="representativeImg">
+              {% endif %} 
+              <div class="representativeTitle1">
+                <div class="commit">{{ c.title }}</div>
+                <div class="commit_detail">{{ c.text }}</div>
+              </div>
+            </div>
+          </div>
+        </a>
+        {% endif %} {% endfor %}
+      </div>
     </div>
-  </div>   
-  {% else %}
-  <div class="btn_contain">
-    <div class="newbtn">
-      <a href="{% url 'login' %}">+ 글쓰기</a>
-    </div>
+</div>
+{% if user.is_authenticated %}
+<div class="btn_contain">
+  <div class="newbtn">
+    <a href="{% url 'board_post' %}">+ 글쓰기</a>
   </div>
+</div>   
+{% else %}
+<div class="btn_contain">
+  <div class="newbtn">
+    <a href="{% url 'login' %}">+ 글쓰기</a>
+  </div>
+</div>
 {% endif %}
-  <script src={% static './js/category.js' %}></script>
- 
+<script src={% static './js/category.js' %}></script>
+
 </body>

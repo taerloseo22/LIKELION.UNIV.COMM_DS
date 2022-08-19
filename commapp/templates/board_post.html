@@ -12,7 +12,8 @@
       <div class="outsection">
         <div class="maintitle"></div>
         <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %} {{ form.as_p }}
+          {% csrf_token %} 
+          {{ form.as_p }}
           <div class="btnbox">
             <button type="submit">등록하기</button>
           </div>

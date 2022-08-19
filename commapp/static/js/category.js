@@ -5,7 +5,7 @@ function option(e) {
     const connect = document.getElementById("connect");
 
     if (e.target.id == "T") {
-      // talk.style.color = "black";
+      talk.style.color = "black";
       talk.style.display = "block";
       issue.style.display = "none";
       project.style.display = "none";
