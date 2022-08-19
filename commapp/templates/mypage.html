@@ -35,9 +35,15 @@
       <div class="reamebox">
         {% if not user.git %}
           <form method="post" action="{% url 'Co' %}">{% csrf_token %} 
-            <label for="gitName">gitName</label>    
-            <input type="text" name="gitName" placeholder="깃 이름을 입력해주세요">
-            <input type="submit">
+            <div class="detail">
+              더 많은 서비스를 이용하시려면 GitHub 연결이 필요합니다
+            </div>
+            <div class="IDbox">
+              <label for="gitName">GitHub 아이디</label>    
+              <input type="text" name="gitName" placeholder="깃허브 아이디를 입력해주세요">
+              <input class="gitbtn" type="submit">
+            </div>
+            
           </form>
         {% else %}
             <div class="readmesection">
