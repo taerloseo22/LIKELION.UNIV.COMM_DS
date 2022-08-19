@@ -28,7 +28,9 @@
                 {{ c.commit }}
               {% endif %}
             {% endfor %}
+            <div class="readmesection">
             {{ readme|markdown:"STYLE" }} 
+            </div>
         {% endif %}
         </div>
         <div class="extrasection">

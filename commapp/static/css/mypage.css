@@ -73,3 +73,11 @@ form{
 .readmesection{
     width: 100%;
 }
+.readmesection{
+    width: 100%;
+    overflow: scroll;
+}
+
+.readmesection p:nth-of-type(8) img{
+    width: 100%;
+}
